@@ -26,25 +26,29 @@
 
 
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+1️⃣ [Trello Board]https://trello.com/b/td7jqlMg/labs-14-tech2rent
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+1️⃣ [Product Canvas]https://www.notion.so/Tech2Rent-fe7c1d9468e9478e9926f6d1e264fd58#3c3bd675fff6495da7dde3cf5c066583
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+1️⃣ [UX Design files]https://projects.invisionapp.com/share/3CSZCY0FRQT#/screens/373884994
 
-🚫 Replace lorem ipsum with a description of your project
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Imagine buying a new camera for one photoshoot. Sounds pretty expensive, right? On Tech2Rent's web platform, you can safely and securely rent hi-tech equipment instead of buying it.
 
 ## 2️⃣ Features
 
 -    Feature 1
+https://www.notion.so/Owners-can-list-equipment-to-rent-828abdb5f9904c0582e3419269ef1ba9
 -    Feature 2
+https://www.notion.so/Renters-can-Search-listings-a69893721e9241c18dcf177d819cea35
 -    Feature 3
+https://www.notion.so/Renters-Can-Rent-Listed-Items-0db5a439c1c24392a5942692d449dc20
 -    Feature 4
+https://www.notion.so/Owners-Can-get-Paid-over-our-Platform-9e76d9b1f2ad4244a3abe2a94daec462
 -    Feature 5
+https://www.notion.so/All-Users-can-review-each-other-3288829f565c490bbd80dd04e1aef16e
+-    Feature 6
+https://www.notion.so/All-Users-can-message-other-users-88164bd7c46b409e9f56212dee87137d
 
 ## 2️⃣Authentication API here
 
