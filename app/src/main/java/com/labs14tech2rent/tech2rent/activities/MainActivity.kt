@@ -1,4 +1,4 @@
-package com.labs14tech2rent.tech2rent.Activities
+package com.labs14tech2rent.tech2rent.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
