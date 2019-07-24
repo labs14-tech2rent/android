@@ -2,4 +2,6 @@
     <string name="app_name">Tech2Rent</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="com_auth0_client_id">iBL7YPpV8q7KzR7qlhmgrrmjOHPEYayR</string>
+    <string name="com_auth0_domain">dev-gco3gwsp.auth0.com</string>
 </resources>

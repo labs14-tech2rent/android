@@ -15,6 +15,7 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+/*
         val profileImage: ImageView = image_profile_picture
         val profileName: TextView = text_profile_name
         val buttonEditName: ImageButton = button_edit_profile_name
@@ -28,6 +29,7 @@ class ProfileActivity : AppCompatActivity() {
         val buttonEditAddress: ImageButton = button_edit_address
         val textRating: TextView = text_rating_value
         val buttonListings: Button = button_my_listings
+*/
 
 
     }

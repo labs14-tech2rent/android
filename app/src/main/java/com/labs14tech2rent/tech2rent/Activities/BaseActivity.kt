@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import com.auth0.android.Auth0
 import com.google.android.material.navigation.NavigationView
 import com.labs14tech2rent.tech2rent.R
 import kotlinx.android.synthetic.main.activity_base.*
@@ -12,6 +13,7 @@ class BaseActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        val context = this
         val toolbar: Toolbar = tool_bar as Toolbar
         setSupportActionBar(toolbar)
         toolbar.title = title
@@ -22,6 +24,9 @@ class BaseActivity : AppCompatActivity() {
         ActionBarToggle.syncState()
 
         val navView: NavigationView = nav_view
+
+        val account: Auth0 = Auth0(context)
+        account.isOIDCConformant = true
 
         navView.setNavigationItemSelectedListener {it ->
             when(it.itemId){
