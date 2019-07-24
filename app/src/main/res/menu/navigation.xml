@@ -6,6 +6,7 @@
     <item android:id="@+id/nav_reservations" android:title="Reservations"/>
     <item android:id="@+id/nav_messages" android:title="Messages"/>
     <item android:id="@+id/nav_cart" android:title="Shopping Cart"/>
+    <item android:id="@+id/nav_login" android:title="Login"/>
     <item android:title=""/>
     <item android:id="@+id/nav_contact" android:title="Contact Us"/>
 </menu>

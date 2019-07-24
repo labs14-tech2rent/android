@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.labs14tech2rent.tech2rent.R
 import kotlinx.android.synthetic.main.activity_profile.*
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
