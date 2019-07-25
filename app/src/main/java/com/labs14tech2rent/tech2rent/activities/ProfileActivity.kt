@@ -1,20 +1,16 @@
 package com.labs14tech2rent.tech2rent.Activities
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import com.labs14tech2rent.tech2rent.R
-import kotlinx.android.synthetic.main.activity_profile.*
 
-class ProfileActivity : AppCompatActivity() {
+import com.labs14tech2rent.tech2rent.R
+
+class ProfileActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+/*
         val profileImage: ImageView = image_profile_picture
         val profileName: TextView = text_profile_name
         val buttonEditName: ImageButton = button_edit_profile_name
@@ -28,6 +24,7 @@ class ProfileActivity : AppCompatActivity() {
         val buttonEditAddress: ImageButton = button_edit_address
         val textRating: TextView = text_rating_value
         val buttonListings: Button = button_my_listings
+*/
 
 
     }
