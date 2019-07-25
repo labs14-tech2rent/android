@@ -37,7 +37,7 @@ abstract class BaseActivity : AppCompatActivity() {
         val navView: NavigationView = nav_view
 
         val account: Auth0 = Auth0(context)
-        account.isOIDCConformant = true
+        //account.isOIDCConformant = true
 
 
         navView.setNavigationItemSelectedListener {it ->
@@ -57,22 +57,14 @@ abstract class BaseActivity : AppCompatActivity() {
                                 }
 
                                 override fun onSuccess(credentials: Credentials) {
-                                    println(credentials)
                                     val usersApi = UsersAPIClient(account, credentials.accessToken)
                                     val authAPIClient = AuthenticationAPIClient(account)
-                                    authAPIClient.userInfo(credentials.accessToken.orEmpty())
+                                    val token = credentials.accessToken.orEmpty()
+                                    authAPIClient.userInfo(token)
                                         .start(object : BaseCallback<UserProfile, AuthenticationException> {
                                             override fun onSuccess(userinfo: UserProfile) {
-                                                usersApi.getProfile(userinfo.id)
-                                                    .start(object : BaseCallback<UserProfile, ManagementException> {
-                                                        override fun onSuccess(profile: UserProfile) {
-                                                            println(profile.id)
-                                                        }
-
-                                                        override fun onFailure(error: ManagementException) {
-                                                            // Show error
-                                                        }
-                                                    })
+                                                userinfo.id
+                                                val string = userinfo.extraInfo.get("sub")
                                             }
 
                                             override fun onFailure(error: AuthenticationException) {

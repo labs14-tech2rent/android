@@ -151,7 +151,7 @@
                                   app:layout_constraintBottom_toBottomOf="parent"
                                   app:layout_constraintTop_toTopOf="parent"
                                   app:layout_constraintStart_toStartOf="parent"
-                                  android:text="Zip"
+                                  android:text="Zip Code"
                                   android:textSize="18dp"/>
 
                         <EditText android:layout_width="225dp" android:layout_height="wrap_content"
