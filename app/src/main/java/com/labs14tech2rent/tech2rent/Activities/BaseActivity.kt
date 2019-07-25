@@ -1,6 +1,8 @@
 package com.labs14tech2rent.tech2rent.Activities
 
 import android.app.Dialog
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -66,7 +68,11 @@ abstract class BaseActivity : AppCompatActivity() {
                                         .start(object : BaseCallback<UserProfile, AuthenticationException> {
                                             override fun onSuccess(userinfo: UserProfile) {
                                                 userinfo.id
-                                                val uuid = userinfo.extraInfo.get("sub")
+                                                val uuid: String = userinfo.extraInfo.get("sub").toString()
+                                                val sharedprefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
+                                                val editor = sharedprefs.edit()
+                                                editor.putString("uuid", uuid)
+                                                editor.apply()
                                             }
 
                                             override fun onFailure(error: AuthenticationException) {
