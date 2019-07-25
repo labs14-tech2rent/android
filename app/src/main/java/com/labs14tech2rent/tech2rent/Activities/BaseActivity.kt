@@ -43,9 +43,11 @@ abstract class BaseActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {it ->
             when(it.itemId){
                 com.labs14tech2rent.tech2rent.R.id.nav_login -> {
-                    WebAuthProvider.logout(account)
+
+                    val parameters = mapOf("prompt" to "login")
                     WebAuthProvider.login(account).withScheme("demo")
                         .withAudience(String.format("https://%s/userinfo", getString(R.string.com_auth0_domain)))
+                        .withParameters(parameters)
                         .start(
                             this,
                             object: AuthCallback{
@@ -64,7 +66,7 @@ abstract class BaseActivity : AppCompatActivity() {
                                         .start(object : BaseCallback<UserProfile, AuthenticationException> {
                                             override fun onSuccess(userinfo: UserProfile) {
                                                 userinfo.id
-                                                val string = userinfo.extraInfo.get("sub")
+                                                val uuid = userinfo.extraInfo.get("sub")
                                             }
 
                                             override fun onFailure(error: AuthenticationException) {
