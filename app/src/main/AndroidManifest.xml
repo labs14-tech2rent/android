@@ -17,14 +17,18 @@
                       android:required="false" />
 
         <activity android:name=".Activities.ProfileActivity">
+
+        </activity>
+        <activity android:name=".activities.MainActivity">
+
+        </activity>
+
+        <activity android:name=".activities.NewListing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".Activities.MainActivity">
-
         </activity>
     </application>
 
