@@ -4,15 +4,21 @@ import android.app.Dialog
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
 import com.auth0.android.Auth0
+import com.auth0.android.authentication.AuthenticationAPIClient
 import com.auth0.android.authentication.AuthenticationException
+import com.auth0.android.callback.BaseCallback
+import com.auth0.android.management.UsersAPIClient
 import com.auth0.android.provider.AuthCallback
 import com.auth0.android.provider.WebAuthProvider
 import com.auth0.android.result.Credentials
+import com.auth0.android.result.UserProfile
 import com.google.android.material.navigation.NavigationView
 import com.labs14tech2rent.tech2rent.R
 import kotlinx.android.synthetic.main.activity_base.*
+import com.auth0.android.management.ManagementException
+
+
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -36,23 +42,46 @@ abstract class BaseActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {it ->
             when(it.itemId){
-                R.id.nav_login -> {
-                    WebAuthProvider.login(account).withScheme("https")
+                com.labs14tech2rent.tech2rent.R.id.nav_login -> {
+                    WebAuthProvider.logout(account)
+                    WebAuthProvider.login(account).withScheme("demo")
                         .withAudience(String.format("https://%s/userinfo", getString(R.string.com_auth0_domain)))
-                        .start(this, object: AuthCallback{
-                            override fun onSuccess(credentials: Credentials) {
-                                println(credentials)
-                            }
+                        .start(
+                            this,
+                            object: AuthCallback{
+                                override fun onFailure(dialog: Dialog) {
 
-                            override fun onFailure(dialog: Dialog) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                            }
+                                }
 
-                            override fun onFailure(exception: AuthenticationException?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                            }
+                                override fun onFailure(exception: AuthenticationException?) {
+                                }
 
-                        })
+                                override fun onSuccess(credentials: Credentials) {
+                                    println(credentials)
+                                    val usersApi = UsersAPIClient(account, credentials.accessToken)
+                                    val authAPIClient = AuthenticationAPIClient(account)
+                                    authAPIClient.userInfo(credentials.accessToken.orEmpty())
+                                        .start(object : BaseCallback<UserProfile, AuthenticationException> {
+                                            override fun onSuccess(userinfo: UserProfile) {
+                                                usersApi.getProfile(userinfo.id)
+                                                    .start(object : BaseCallback<UserProfile, ManagementException> {
+                                                        override fun onSuccess(profile: UserProfile) {
+                                                            println(profile.id)
+                                                        }
+
+                                                        override fun onFailure(error: ManagementException) {
+                                                            // Show error
+                                                        }
+                                                    })
+                                            }
+
+                                            override fun onFailure(error: AuthenticationException) {
+                                                // Show error
+                                            }
+                                        })
+                                }
+                            })
+
 
                 }
             }

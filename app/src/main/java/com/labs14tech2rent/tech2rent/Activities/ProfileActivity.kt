@@ -1,13 +1,8 @@
 package com.labs14tech2rent.tech2rent.Activities
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+
 import com.labs14tech2rent.tech2rent.R
-import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : BaseActivity() {
 
