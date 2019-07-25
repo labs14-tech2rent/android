@@ -1,6 +1,8 @@
 package com.labs14tech2rent.tech2rent.Activities
 
 import android.app.Dialog
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -37,15 +39,17 @@ abstract class BaseActivity : AppCompatActivity() {
         val navView: NavigationView = nav_view
 
         val account: Auth0 = Auth0(context)
-        account.isOIDCConformant = true
+        //account.isOIDCConformant = true
 
 
         navView.setNavigationItemSelectedListener {it ->
             when(it.itemId){
                 com.labs14tech2rent.tech2rent.R.id.nav_login -> {
-                    WebAuthProvider.logout(account)
+
+                    val parameters = mapOf("prompt" to "login")
                     WebAuthProvider.login(account).withScheme("demo")
                         .withAudience(String.format("https://%s/userinfo", getString(R.string.com_auth0_domain)))
+                        .withParameters(parameters)
                         .start(
                             this,
                             object: AuthCallback{
@@ -57,22 +61,18 @@ abstract class BaseActivity : AppCompatActivity() {
                                 }
 
                                 override fun onSuccess(credentials: Credentials) {
-                                    println(credentials)
                                     val usersApi = UsersAPIClient(account, credentials.accessToken)
                                     val authAPIClient = AuthenticationAPIClient(account)
-                                    authAPIClient.userInfo(credentials.accessToken.orEmpty())
+                                    val token = credentials.accessToken.orEmpty()
+                                    authAPIClient.userInfo(token)
                                         .start(object : BaseCallback<UserProfile, AuthenticationException> {
                                             override fun onSuccess(userinfo: UserProfile) {
-                                                usersApi.getProfile(userinfo.id)
-                                                    .start(object : BaseCallback<UserProfile, ManagementException> {
-                                                        override fun onSuccess(profile: UserProfile) {
-                                                            println(profile.id)
-                                                        }
-
-                                                        override fun onFailure(error: ManagementException) {
-                                                            // Show error
-                                                        }
-                                                    })
+                                                userinfo.id
+                                                val uuid: String = userinfo.extraInfo.get("sub").toString()
+                                                val sharedprefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
+                                                val editor = sharedprefs.edit()
+                                                editor.putString("uuid", uuid)
+                                                editor.apply()
                                             }
 
                                             override fun onFailure(error: AuthenticationException) {
