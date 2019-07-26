@@ -253,7 +253,7 @@
                                      android:id="@+id/check_preferred_cash"/>
 
                         <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                     app:layout_constraintStart_toEndOf="@id/radio_preferred_cash"
+                                     app:layout_constraintStart_toEndOf="@id/check_preferred_cash"
                                      app:layout_constraintTop_toTopOf="@id/text_preferred_payment"
                                      app:layout_constraintBottom_toBottomOf="@id/text_preferred_payment"
                                      android:layout_marginStart="20dp"
