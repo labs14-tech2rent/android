@@ -1,4 +1,4 @@
-package com.labs14tech2rent.tech2rent.Activities
+package com.labs14tech2rent.tech2rent.activities
 
 import Models.User
 import android.os.Bundle

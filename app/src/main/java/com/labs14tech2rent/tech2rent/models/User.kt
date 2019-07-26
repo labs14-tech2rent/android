@@ -1,4 +1,4 @@
-package Models
+package com.labs14tech2rent.tech2rent.models
 
 data class User(val auth0_user_id: String,
                 val email: String,
