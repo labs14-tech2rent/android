@@ -21,185 +21,177 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tool_bar"
+                app:theme="@style/ToolbarWhiteNavButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.appbar.AppBarLayout>
 
 
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="50dp"
+            android:fillViewport="true">
 
-
-
-
-<ScrollView
-    android:layout_marginTop="50dp"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true"
-    >
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    android:layout_marginTop="150dp">
-
-
-    <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/add_photo_linear_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_margin="10dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_launcher_background"
-            android:layout_width="150dp"
-            android:layout_height="150dp">
-
-        </androidx.appcompat.widget.AppCompatImageView>
-
-        <Button
-            android:layout_marginTop="20dp"
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add Photo"
-            app:layout_constraintBottom_toTopOf="@id/submit_button" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_layout_parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/submit_button"
-        app:layout_constraintTop_toBottomOf="@id/add_photo_linear_layout">
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/TextInputLayoutAppearance"
-            app:colorControlActivated="@color/cardview_dark_background"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Listing Title" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/TextInputLayoutAppearance"
-            app:colorControlActivated="@color/cardview_dark_background">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Listing Price" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/TextInputLayoutAppearance"
-            app:colorControlActivated="@color/cardview_dark_background">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Location" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/TextInputLayoutAppearance"
-            app:colorControlActivated="@color/cardview_dark_background">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Category" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:theme="@style/TextInputLayoutAppearance"
-            app:colorControlActivated="@color/cardview_dark_background">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Description" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_margin="20dp"
+                android:layout_marginTop="150dp">
 
 
+                <LinearLayout
+                    android:id="@+id/add_photo_linear_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" Payment types"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/black_a2" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_launcher_background">
 
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cash" />
+                    </androidx.appcompat.widget.AppCompatImageView>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Card" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Add Photo"
+                        app:layout_constraintBottom_toTopOf="@id/submit_button" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@id/submit_button"
+                    app:layout_constraintTop_toBottomOf="@id/add_photo_linear_layout">
 
 
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/TextInputLayoutAppearance"
+                        app:colorControlActivated="@color/cardview_dark_background">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Listing Title" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/TextInputLayoutAppearance"
+                        app:colorControlActivated="@color/cardview_dark_background">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Listing Price" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/TextInputLayoutAppearance"
+                        app:colorControlActivated="@color/cardview_dark_background">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Location" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/TextInputLayoutAppearance"
+                        app:colorControlActivated="@color/cardview_dark_background">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Category" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="50dp"
+                        android:theme="@style/TextInputLayoutAppearance"
+                        app:colorControlActivated="@color/cardview_dark_background">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Description" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text=" Payment types"
+                        android:textColor="@color/black_a2" />
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cash" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Card" />
 
 
+                </LinearLayout>
 
 
-    <Button
-        android:id="@+id/submit_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        app:layout_constraintBottom_toTopOf="@id/placeholder_bottom"/>
+                <Button
+                    android:id="@+id/submit_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    app:layout_constraintBottom_toTopOf="@id/placeholder_bottom" />
 
-    <androidx.constraintlayout.widget.Placeholder
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/placeholder_bottom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+                <androidx.constraintlayout.widget.Placeholder
+                    android:id="@+id/placeholder_bottom"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:fitsSystemWindows="true"
-        app:menu="@menu/navigation"
         android:id="@+id/nav_view"
+        app:theme="@style/NavigationDrawerStyle"
+        android:paddingTop="60dp"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        android:fitsSystemWindows="true"
+        app:menu="@menu/navigation" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
