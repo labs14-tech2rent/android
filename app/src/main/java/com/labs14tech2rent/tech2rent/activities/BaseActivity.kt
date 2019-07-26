@@ -18,8 +18,6 @@ import com.auth0.android.result.UserProfile
 import com.google.android.material.navigation.NavigationView
 import com.labs14tech2rent.tech2rent.R
 import kotlinx.android.synthetic.main.activity_base.*
-import com.auth0.android.management.ManagementException
-
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -28,8 +26,9 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onStart()
         val context = this
         val toolbar: Toolbar = tool_bar as Toolbar
+        toolbar.setTitleTextColor(resources.getColor(R.color.ux_color_1_off_white))
+        toolbar.title = ""
         setSupportActionBar(toolbar)
-        toolbar.title = title
 
         val drawerLayout = drawer_layout
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
@@ -37,6 +36,10 @@ abstract class BaseActivity : AppCompatActivity() {
         toggle.syncState()
 
         val navView: NavigationView = nav_view
+        nav_view.setBackgroundColor(resources.getColor(R.color.ux_color_3_medium_gray))
+        nav_view.itemTextColor = resources.getColorStateList(R.color.nav_view_color_state_list)
+        nav_view.setCheckedItem(R.id.nav_login)
+        nav_view.menu.getItem(4).isChecked = true
 
         val account: Auth0 = Auth0(context)
         //account.isOIDCConformant = true
@@ -44,7 +47,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {it ->
             when(it.itemId){
-                com.labs14tech2rent.tech2rent.R.id.nav_login -> {
+                R.id.nav_login -> {
 
                     val parameters = mapOf("prompt" to "login")
                     WebAuthProvider.login(account).withScheme("demo")
