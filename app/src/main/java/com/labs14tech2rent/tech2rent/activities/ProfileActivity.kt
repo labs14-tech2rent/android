@@ -1,8 +1,13 @@
 package com.labs14tech2rent.tech2rent.Activities
 
+import Models.User
 import android.os.Bundle
-
+import android.widget.CheckBox
+import android.widget.EditText
 import com.labs14tech2rent.tech2rent.R
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : BaseActivity() {
 
@@ -10,22 +15,45 @@ class ProfileActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-/*
-        val profileImage: ImageView = image_profile_picture
-        val profileName: TextView = text_profile_name
-        val buttonEditName: ImageButton = button_edit_profile_name
-        val textDob: TextView = text_dob_value
-        val buttonEditDob: ImageButton = button_edit_dob
-        val textPhone: TextView = text_phone_value
-        val buttonEditPhone: ImageButton = button_edit_phone
-        val textPayment: TextView = text_payment_value
-        val buttonEditPayment: ImageButton = button_edit_payment
-        val textAddress: TextView = text_address_value
-        val buttonEditAddress: ImageButton = button_edit_address
-        val textRating: TextView = text_rating_value
-        val buttonListings: Button = button_my_listings
-*/
+        val profileImage: CircleImageView = image_profile_picture
+        val editName: EditText = edit_name
+        val editStreet: EditText = edit_street_address
+        val editCity: EditText = edit_city
+        val editState: EditText = edit_state
+        val editZip: EditText = edit_zip
+        val editDOB: EditText = edit_dob
+        val editPhone: EditText = edit_phone
+        val checkCash: CheckBox = check_preferred_cash
+        val checkCredit: CheckBox = check_preferred_credit
 
+        /*
+        *
+        *  NETWORK GET USER REQUEST
+        *
+        * */
+
+
+        Picasso.get().load("").into(profileImage)
+        editName.setText("")
+        editStreet.setText("")
+        editCity.setText("")
+        editState.setText("")
+        editZip.setText("")
+        editDOB.setText("")
+        editPhone.setText("")
+        if(true) {
+            checkCash.isChecked = false
+        }
+        if(true) {
+            checkCredit.isChecked = false
+        }
 
     }
+}
+
+
+fun saveProfile(user: User, id: Int){
+    /*
+    * SAVE USER FUNCTIONALITY
+    * */
 }
