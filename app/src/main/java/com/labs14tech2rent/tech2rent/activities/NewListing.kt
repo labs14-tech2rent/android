@@ -16,7 +16,7 @@ import org.json.JSONArray
 
 class NewListing : BaseActivity() {
 
-    private val urlString = "https://labstech2rentstaging.herokuapp.com/test"
+    private val urlString = "https://labstech2rentstaging.herokuapp.com/api/users/1/items"
 
     companion object {
         val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
@@ -28,7 +28,7 @@ class NewListing : BaseActivity() {
         setContentView(R.layout.activity_new_listing)
 
 
-        val listing = Listing("", "Android Test Listing", "Best camera around", "50.00", "France", "Nikon", "card")
+        val listing = Listing("1", "Android Test Listing", "Best camera around", "50.00", "France", "Nikon", "card")
 
         submit_button.setOnClickListener {
 
