@@ -2,10 +2,20 @@
 <resources>
 
 
-    <color name="colorPrimary">#1B2144</color>
-    <color name="colorPrimaryDark">#5E6381</color>
-    <color name="colorAccent">#5E6381</color>
-    <color name="launcherIconBg">#C0C7CE</color>
+    <color name="colorPrimary">#FF403F3F</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FF262265</color>
+
+
+
+    <color name="ux_color_1_off_white">#FFD8D8D8</color>
+    <color name="ux_color_2_light_gray">#FF9B9B9B</color>
+    <color name="ux_color_3_medium_gray">#FF515050</color>
+    <color name="ux_color_4_accent_blue">#FF262265</color>
+    <color name="ux_color_5_white">#FFFFFFFF</color>
+    <color name="ux_color_6_dark_gray">#FF403F3F</color>
+    <color name="ux_color_7_accent_red">#FFFD5454</color>
+    <color name="ux_color_8_accent_purple">#FF9792EB</color>
 
     <color name="red_50">#FFEBEE</color>
     <color name="red_100">#FFCDD2</color>
