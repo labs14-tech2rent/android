@@ -12,14 +12,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.RegisterActivity">
+        <activity android:name=".activities.RegisterActivity">
         </activity>
 
         <uses-library
                 android:name="org.apache.http.legacy"
                 android:required="false"/>
 
-        <activity android:name=".Activities.ProfileActivity">
+        <activity android:name=".activities.ProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
