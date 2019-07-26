@@ -36,7 +36,7 @@ abstract class BaseActivity : AppCompatActivity() {
         toggle.syncState()
 
         val navView: NavigationView = nav_view
-        nav_view.setBackgroundColor(resources.getColor(R.color.ux_color_3_medium_gray))
+        nav_view.setBackgroundColor(resources.getColor(R.color.ux_color_6_dark_gray))
         nav_view.itemTextColor = resources.getColorStateList(R.color.nav_view_color_state_list)
         nav_view.setCheckedItem(R.id.nav_login)
         nav_view.menu.getItem(4).isChecked = true
