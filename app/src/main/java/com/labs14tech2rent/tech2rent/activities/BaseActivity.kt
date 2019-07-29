@@ -18,6 +18,8 @@ import com.auth0.android.result.UserProfile
 import com.google.android.material.navigation.NavigationView
 import com.labs14tech2rent.tech2rent.R
 import kotlinx.android.synthetic.main.activity_base.*
+import okhttp3.*
+import org.json.JSONObject
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -43,7 +45,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
         val account: Auth0 = Auth0(context)
         //account.isOIDCConformant = true
-
+        val client: OkHttpClient = OkHttpClient()
 
         navView.setNavigationItemSelectedListener {it ->
             when(it.itemId){
