@@ -73,11 +73,34 @@ abstract class BaseActivity : AppCompatActivity() {
                                         .start(object : BaseCallback<UserProfile, AuthenticationException> {
                                             override fun onSuccess(userinfo: UserProfile) {
                                                 userinfo.id
-                                                val uuid: String = userinfo.extraInfo.get("sub").toString()
+                                                var uuid: String = userinfo.extraInfo.get("sub").toString()
                                                 val sharedprefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
                                                 val editor = sharedprefs.edit()
                                                 editor.putString("uuid", uuid)
                                                 editor.apply()
+
+
+                                                val body = FormBody.Builder().add("auth0_user_id", uuid).build()
+
+                                                val request: Request = Request.Builder().url("http://labstech2rentstaging.herokuapp.com/api/users/findUser")
+                                                    .post(body)
+                                                    .build()
+                                                val response: Response = client.newCall(request).execute()
+
+                                                val JSONstring = response.body?.string()
+
+                                                val JSON = JSONObject(JSONstring)
+                                                try {
+                                                    if (JSON.getString("message").equals("User not found")) {
+                                                        /*
+                                                    * REDIRECT TO FINISH PROFILE
+                                                    * */
+                                                    }
+                                                }catch (e: Exception){ }
+
+
+                                                println(JSONstring)
+
                                             }
 
                                             override fun onFailure(error: AuthenticationException) {
