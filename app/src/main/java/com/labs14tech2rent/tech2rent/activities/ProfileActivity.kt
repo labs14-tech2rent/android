@@ -1,11 +1,10 @@
 package com.labs14tech2rent.tech2rent.activities
 
-import Models.User
 import android.os.Bundle
 import android.widget.CheckBox
-import android.widget.CompoundButton
 import android.widget.EditText
 import com.labs14tech2rent.tech2rent.R
+import com.labs14tech2rent.tech2rent.models.User
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_profile.*
