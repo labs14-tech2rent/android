@@ -1,5 +1,7 @@
 package com.labs14tech2rent.tech2rent.models
 
+import java.io.Serializable
+
 data class Listing(val auth0_user_id: String,
                    val name: String,
                    val description: String,
@@ -7,7 +9,7 @@ data class Listing(val auth0_user_id: String,
                    var location: String = "",
                    var category: String = "",
                    var preferred_payment_type: String = ""
-                   ){
+                   ): Serializable{
 
     override fun toString(): String {
         return "{\"users_ownerId\":\"$auth0_user_id\"," +

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="20dp"
+    android:layout_width="326dp"
+    android:layout_height="518dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.ViewProfileFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_profile_view"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_width="129dp"
+        android:layout_height="129dp" />
+
+    <TextView
+        android:text="First Last"
+        android:id="@+id/text_name_view"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/image_profile_view"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/text_title_view"
+        android:text="Professional Videographer"
+        app:layout_constraintTop_toBottomOf="@id/text_name_view"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/text_location_view"
+        android:text="City ST"
+        app:layout_constraintTop_toBottomOf="@id/text_title_view"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/button_view_tech_listed"
+        app:layout_constraintTop_toBottomOf="@id/text_location_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/view_tech_listed_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:clickable="false"
+        android:fontFamily="Roboto"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:text="View Tech Listed"
+        app:layout_constraintEnd_toEndOf="@id/button_view_tech_listed"
+        app:layout_constraintStart_toStartOf="@id/button_view_tech_listed"
+        app:layout_constraintBottom_toBottomOf="@id/button_view_tech_listed"
+        app:layout_constraintTop_toTopOf="@id/button_view_tech_listed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/button_message"
+        app:layout_constraintBottom_toTopOf="@id/button_view_tech_listed"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/message_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textColor="@color/messageBlue"
+        android:clickable="false"
+        android:fontFamily="Roboto"
+        android:textSize="14sp"
+        android:text="Message"
+        app:layout_constraintEnd_toEndOf="@id/button_message"
+        app:layout_constraintStart_toStartOf="@id/button_message"
+        app:layout_constraintBottom_toBottomOf="@id/button_message"
+        app:layout_constraintTop_toTopOf="@id/button_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/text_bio_title"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/button_view_tech_listed"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="19sp"
+        android:text="Bio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/text_bio"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_bio_title"
+        android:layout_width="290dp"
+        android:layout_height="154dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
