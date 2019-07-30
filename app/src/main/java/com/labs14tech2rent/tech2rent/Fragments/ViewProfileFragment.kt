@@ -25,6 +25,8 @@ class ViewProfileFragment : Fragment() {
     val textTitle: TextView = text_title_view
     val textLocation: TextView = text_location_view
     val buttonTechListed: ImageButton = button_view_tech_listed
+    val buttonMessage: ImageButton = button_message
+    val textBio: TextView = text_bio
 
     private var listing: Listing? = null
     private var user: User? = null
