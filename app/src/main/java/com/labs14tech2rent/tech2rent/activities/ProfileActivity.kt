@@ -128,7 +128,7 @@ class ProfileActivity : BaseActivity() {
                 .add("zip_code", editZip.text.toString())
                 .build()
 
-            val postRequest = Request.Builder().url("http://labstech2rent.herokuapp.com/api/users/$userid")
+            val postRequest = Request.Builder().url("https://labstech2rentstaging.herokuapp.com/api/users/$userid")
                 .put(body).build()
 
             val response = client.newCall(postRequest).execute()

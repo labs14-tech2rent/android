@@ -79,11 +79,11 @@ abstract class BaseActivity : AppCompatActivity() {
                                                 editor.putString("uuid", uuid)
                                                 editor.apply()
 
+                                                uuid = "google-oauth2%7C115496944208789548182"
 
                                                 val body = FormBody.Builder().add("auth0_user_id", uuid).build()
 
-                                                val request: Request = Request.Builder().url("http://labstech2rentstaging.herokuapp.com/api/users/findUser")
-                                                    .post(body)
+                                                val request: Request = Request.Builder().post(body).url("https://labstech2rentstaging.herokuapp.com/api/users/findUser")
                                                     .build()
                                                 val response: Response = client.newCall(request).execute()
 
