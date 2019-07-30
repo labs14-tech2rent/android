@@ -18,6 +18,8 @@ import com.auth0.android.result.UserProfile
 import com.google.android.material.navigation.NavigationView
 import com.labs14tech2rent.tech2rent.R
 import kotlinx.android.synthetic.main.activity_base.*
+import okhttp3.*
+import org.json.JSONObject
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -43,7 +45,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
         val account: Auth0 = Auth0(context)
         //account.isOIDCConformant = true
-
+        val client: OkHttpClient = OkHttpClient()
 
         navView.setNavigationItemSelectedListener {it ->
             when(it.itemId){
@@ -71,11 +73,34 @@ abstract class BaseActivity : AppCompatActivity() {
                                         .start(object : BaseCallback<UserProfile, AuthenticationException> {
                                             override fun onSuccess(userinfo: UserProfile) {
                                                 userinfo.id
-                                                val uuid: String = userinfo.extraInfo.get("sub").toString()
+                                                var uuid: String = userinfo.extraInfo.get("sub").toString()
                                                 val sharedprefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
                                                 val editor = sharedprefs.edit()
                                                 editor.putString("uuid", uuid)
                                                 editor.apply()
+
+                                                uuid = "google-oauth2%7C115496944208789548182"
+
+                                                val body = FormBody.Builder().add("auth0_user_id", uuid).build()
+
+                                                val request: Request = Request.Builder().post(body).url("https://labstech2rentstaging.herokuapp.com/api/users/findUser")
+                                                    .build()
+                                                val response: Response = client.newCall(request).execute()
+
+                                                val JSONstring = response.body?.string()
+
+                                                val JSON = JSONObject(JSONstring)
+                                                try {
+                                                    if (JSON.getString("message").equals("User not found")) {
+                                                        /*
+                                                    * REDIRECT TO FINISH PROFILE
+                                                    * */
+                                                    }
+                                                }catch (e: Exception){ }
+
+
+                                                println(JSONstring)
+
                                             }
 
                                             override fun onFailure(error: AuthenticationException) {

@@ -12,7 +12,7 @@ import org.json.JSONArray
 
 class MainActivity : AppCompatActivity() {
 
-    val urlString = "https://labstech2rentstaging.herokuapp.com/test"
+    val urlString = "https://labstech2rentstaging.herokuapp.com/api/users/userIDs"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
