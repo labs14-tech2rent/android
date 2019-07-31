@@ -2,6 +2,7 @@ package com.labs14tech2rent.tech2rent.activities
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -40,15 +41,31 @@ abstract class BaseActivity : AppCompatActivity() {
         val navView: NavigationView = nav_view
         nav_view.setBackgroundColor(resources.getColor(R.color.ux_color_6_dark_gray))
         nav_view.itemTextColor = resources.getColorStateList(R.color.nav_view_color_state_list)
-        nav_view.setCheckedItem(R.id.nav_login)
-        nav_view.menu.getItem(4).isChecked = true
 
         val account: Auth0 = Auth0(context)
         //account.isOIDCConformant = true
         val client: OkHttpClient = OkHttpClient()
 
+
         navView.setNavigationItemSelectedListener {it ->
+
             when(it.itemId){
+                R.id.nav_list -> {
+                    val intent = Intent(context, NewListing::class.java)
+                    startActivity(intent)
+
+                }
+
+                R.id.nav_edit -> {
+                    val intent = Intent(context, ProfileActivity::class.java)
+                    startActivity(intent)
+                }
+
+                R.id.nav_register -> {
+                    val intent = Intent(context, RegisterActivity::class.java)
+                    startActivity(intent)
+                }
+
                 R.id.nav_login -> {
 
                     val parameters = mapOf("prompt" to "login")

@@ -1,12 +1,9 @@
 package com.labs14tech2rent.tech2rent.activities
 
 import android.os.Bundle
-import android.view.View
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.Listing
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_new_listing.*
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -26,11 +23,49 @@ class NewListing : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_listing)
+        this.nav_view.menu.getItem(2).isChecked = true
 
 
-        val listing = Listing("1", "Android Test Listing", "Best camera around", "50.00", "France", "Nikon", "card")
 
         submit_button.setOnClickListener {
+
+            val cash = listing_checkbox_cash.isChecked
+            val card = listing_checkbox_card.isChecked
+
+            val payments = if (card && cash) {
+                "Card or Cash"
+            } else if (cash) {
+                "Cash"
+            } else if (card) {
+                "Card"
+            } else {
+                "none"
+            }
+
+            var zipcode = ""
+            var city = ""
+            var state = ""
+
+            if (listing_location.text.toString().substringAfter(',').contains(',')) {
+
+                zipcode = listing_location.text.toString().substringAfterLast(',')
+                city = listing_location.text.toString().substringBefore(',')
+                state = listing_location.text.toString().substringAfter(',').substringBefore(',')
+            }
+
+
+            val listing = Listing(0,1, //TODO: change user_id here once authorization is functional
+                listing_title.text.toString(),
+                listing_price.text.toString(), "",
+                listing_category.text.toString(),
+                listing_description.text.toString(), true,
+                payments, "5",
+                listing_condition_spinner.selectedItem.toString(),
+                listing_sub_category.text.toString(),
+                city,
+                state,
+                zipcode
+                )
 
 
             Thread(Runnable {
@@ -45,7 +80,6 @@ class NewListing : BaseActivity() {
                     val response = client.newCall(request).execute()
                     val result = response.body?.string()
                     val resultJSON: JSONArray = JSONArray(result)
-                    textView.text = resultJSON.get(1).toString()
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }

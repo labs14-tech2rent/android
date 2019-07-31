@@ -2,37 +2,41 @@ package com.labs14tech2rent.tech2rent.models
 
 import java.io.Serializable
 
-data class Listing(val auth0_user_id: String,
-                   val name: String,
-                   val description: String,
-                   var listing_price: String = "",
-                   var location: String = "",
-                   var category: String = "",
-                   var preferred_payment_type: String = ""
-                   ): Serializable{
+data class Listing(
+    val item_id: Int,
+    val auth0_user_id: Int,
+    val name: String,
+    val listing_price: String,
+    val picture_url: String,
+    val category: String,
+    val description: String,
+    val available: Boolean,
+    val preferred_payment_type: String,
+    val average_rating: String,
+    val condition: String,
+    val sub_category: String,
+    val city: String,
+    val state: String,
+    val zip_code: String
+
+) : Serializable {
 
     override fun toString(): String {
         return "{\"users_ownerId\":\"$auth0_user_id\"," +
                 "\"name\":\"$name\"," +
-                "\"description\":\"$description\"," +
                 "\"price\":\"$listing_price\"," +
-                "\"city\":\"$location\"," +
+                "\"picture\":\"$picture_url\"," +
                 "\"category\":\"$category\"," +
-                "\"payment_type\":\"$preferred_payment_type\"}"
+                "\"description\":\"$description\"," +
+                "\"available\":\"$available\"," +
+                "\"payment_type\":\"$preferred_payment_type\"," +
+                "\"condition\":\"$condition\"," +
+                "\"sub_category\":\"$sub_category\"," +
+                "\"price\":\"$listing_price\"," +
+                "\"city\":\"$city\"," +
+                "\"state\":\"$state\"," +
+                "\"zipcode\":\"$zip_code\"}"
     }
 }
 
-/*
-{
-    "id": 3,
-    "users_ownerId": 1,
-    "name": "APEMAN Trail Camera 16MP 1080P Wildlife Camera, Night Detection Game Camera with No Glow 940nm IR LEDs, Time Lapse, Timer, IP66 Waterproof Design",
-    "price": "20.00",
-    "picture": "https://ae01.alicdn.com/kf/HTB1Brc7QFXXXXbFXVXXq6xXFXXXX.jpg",
-    "location": "Philadelphia, PA",
-    "category": "Cameras",
-    "description": "Trail cameras are fit for hunters and wildlife enthusiasts alike. These motion-activated cameras capture images day or night, whenever an animal passes into the field of view.",
-    "available": true,
-    "payment_type": "Online",
-    "avarage_raiting": "4.50"
-}*/
+
