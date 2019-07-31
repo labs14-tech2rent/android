@@ -21,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
         val editZip: EditText = edit_zip
         val editPhone: EditText = edit_phone
         val editDob: EditText = edit_dob
+        val editEmail: EditText = edit_email
         val buttonFinish: ImageButton = button_finish
 
 

@@ -7,17 +7,15 @@ import com.labs14tech2rent.tech2rent.models.Listing
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_new_listing.*
 import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 
 class NewListing : BaseActivity() {
 
     private val urlString = "https://labstech2rentstaging.herokuapp.com/api/users/1/items"
-
+/*
     companion object {
         val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
     }
@@ -52,5 +50,5 @@ class NewListing : BaseActivity() {
             }).start()
 
         }
-    }
+    }*/
 }

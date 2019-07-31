@@ -22,6 +22,8 @@ import okhttp3.*
 import org.json.JSONObject
 
 
+
+
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun onStart() {
@@ -79,15 +81,23 @@ abstract class BaseActivity : AppCompatActivity() {
                                                 editor.putString("uuid", uuid)
                                                 editor.apply()
 
-                                                uuid = "google-oauth2%7C115496944208789548182"
+                                                //uuid = "google-oauth2%7C115496944208789548182"
 
-                                                val body = FormBody.Builder().add("auth0_user_id", uuid).build()
+                       /*                         val body: RequestBody = FormBody.Builder().add("auth0_user_id", uuid).build()
 
-                                                val request: Request = Request.Builder().post(body).url("https://labstech2rentstaging.herokuapp.com/api/users/findUser")
+                                                var json = JSONObject()*/
+
+                                                val body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), "{ \"auth0_user_id\": \"$uuid\" }")
+
+                                                val request: Request = Request.Builder().post(body).url("http://labstech2rentstaging.herokuapp.com/api/users/testBody2").addHeader("Content-Type", "application/json;charset=UTF-8")
                                                     .build()
+
+                                                println(body.toString())
                                                 val response: Response = client.newCall(request).execute()
 
-                                                val JSONstring = response.body?.string()
+
+
+                                                val JSONstring = response.body()?.string()
 
                                                 val JSON = JSONObject(JSONstring)
                                                 try {
