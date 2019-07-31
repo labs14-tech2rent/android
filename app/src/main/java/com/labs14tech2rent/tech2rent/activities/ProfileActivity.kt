@@ -12,7 +12,9 @@ import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.User
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_new_listing.*
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_profile.nav_view
 import okhttp3.*
 import org.json.JSONObject
 
@@ -21,6 +23,7 @@ class ProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+        this.nav_view.menu.getItem(1).isChecked = true
 
         val profileImage: CircleImageView = image_profile_picture
         val editName: EditText = edit_name
