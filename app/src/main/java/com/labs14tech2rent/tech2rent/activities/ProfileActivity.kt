@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_new_listing.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_profile.nav_view
 import okhttp3.*
+import org.json.JSONArray
 import org.json.JSONObject
 
 class ProfileActivity : BaseActivity() {
@@ -39,72 +40,83 @@ class ProfileActivity : BaseActivity() {
         val buttonCancel: Button = button_cancel
         val context = this
 
+
+        val sharedPrefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
+        val uuid = sharedPrefs.getString("uuid", "")
+        val userid = sharedPrefs.getInt("userid", 0)
+        val client: OkHttpClient = OkHttpClient()
+        var profileJSON: JSONObject = JSONObject()
+        var editableProfile: User = User("", "", "")
+
+
         /*
         *
         *  NETWORK GET USER REQUEST
         *
         * */
-/*        val client: OkHttpClient = OkHttpClient()
-        var profileString: String = ""
-        val sharedPrefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
-        val uuid = sharedPrefs.getString("uuid", "")
-        val userid = 1
         Thread(Runnable {
-            val request: Request =
-                Request.Builder().url("https://labstech2rentstaging.herokuapp.com/api/users/$userid/reviews").build()
-            try {
-                var response: Response = client.newCall(request).execute()
-                profileString = response.body()!!.string()
+            val request: Request = Request.Builder().get()
+                .url("http://labstech2rentstaging.herokuapp.com/api/users/$userid/reviews")
+                .addHeader("Content-Type", "application/json;charset=UTF-8")
+                .build()
 
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            val response: Response = client.newCall(request).execute()
+
+            val JSONstring = response.body()?.string()
+
+            runOnUiThread(Runnable {
+                profileJSON = JSONObject(JSONstring)
+                editableProfile = User(
+                    uuid!!,
+                    profileJSON.getString("email"),
+                    profileJSON.getString("name"),
+                    profileJSON.getString("profile_picture"),
+                    profileJSON.getString("phone"),
+                    profileJSON.getString("date_of_birth"),
+                    profileJSON.getString("preferred_payment_type"),
+                    profileJSON.getString("street"),
+                    profileJSON.getString("city"),
+                    profileJSON.getString("state"),
+                    profileJSON.getInt("zip_code"),
+                    profileJSON.getDouble("average_rating")
+                )
+                try {
+                    Picasso.get().load(editableProfile.profile_picture).into(profileImage)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+                editName.setText(editableProfile.name)
+                editStreet.setText(editableProfile.street)
+                editCity.setText(editableProfile.city)
+                editState.setText(editableProfile.state)
+                editZip.setText(editableProfile.zip_code.toString())
+                editDOB.setText(editableProfile.date_of_birth)
+                editPhone.setText(editableProfile.phone)
+                when (editableProfile.preferred_payment_type) {
+                    "cash" -> checkCash.isChecked = true
+                    "card" -> checkCredit.isChecked = true
+                    "both" -> {
+                        checkCash.isChecked = true
+                        checkCredit.isChecked = true
+                    }
+                }
+            })
+
         }).start()
 
-        val profileJSON: JSONObject = JSONObject(profileString)
-        var editableProfile: User = User(
-            profileJSON.getString("auth0_user_id"),
-            profileJSON.getString("email"),
-            profileJSON.getString("name"),
-            profileJSON.getString("profile_picture"),
-            profileJSON.getString("phone"),
-            profileJSON.getString("date_of_birth"),
-            profileJSON.getString("preferred_payment"),
-            profileJSON.getString("street"),
-            profileJSON.getString("city"),
-            profileJSON.getString("state"),
-            profileJSON.getInt("zip_code"),
-            profileJSON.getDouble("average_rating")
-        )*/
-/*        Picasso.get().load(editableProfile.profile_picture).into(profileImage)
-        editName.setText(editableProfile.name)
-        editStreet.setText(editableProfile.street)
-        editCity.setText(editableProfile.city)
-        editState.setText(editableProfile.state)
-        editZip.setText(editableProfile.zip_code)
-        editDOB.setText(editableProfile.date_of_birth)
-        editPhone.setText(editableProfile.phone)
-        when (editableProfile.preferred_payment_type) {
-            "cash" -> checkCash.isChecked = true
-            "card" -> checkCredit.isChecked = true
-            "both" -> {
-                checkCash.isChecked = true
-                checkCredit.isChecked = true
-            }
-        }*/
-
-        fun getPreferredPayment(): String{
-            if (checkCash.isChecked && !checkCredit.isChecked){
+        fun getPreferredPayment(): String {
+            if (checkCash.isChecked && !checkCredit.isChecked) {
                 return "cash"
             }
-            if (checkCredit.isChecked && !checkCash.isChecked){
+            if (checkCredit.isChecked && !checkCash.isChecked) {
                 return "card"
             }
             return "both"
         }
 
         buttonSave.setOnClickListener(View.OnClickListener {
-/*            val editedUser: User = User(uuid!!, editableProfile.email,
+            val editedUser: User = User(
+                uuid!!, editableProfile.email,
                 editName.text.toString(),
                 "profile pic",
                 editPhone.text.toString(),
@@ -114,11 +126,10 @@ class ProfileActivity : BaseActivity() {
                 editCity.text.toString(),
                 editState.text.toString(),
                 editZip.text.toString().toInt(),
-                editableProfile.average_rating)*/
+                editableProfile.average_rating
+            )
 
 
-
-/*
             val body = FormBody.Builder()
                 .add("auth0_user_id", uuid)
                 .add("email", editableProfile.email)
@@ -137,17 +148,20 @@ class ProfileActivity : BaseActivity() {
 
             val response = client.newCall(postRequest).execute()
 
-*/
+            println(response.body()?.string())
 
 
         })
 
 
         buttonCancel.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(
-            context,
-            MainActivity::class.java)
-        )})
+            startActivity(
+                Intent(
+                    context,
+                    MainActivity::class.java
+                )
+            )
+        })
     }
 }
 

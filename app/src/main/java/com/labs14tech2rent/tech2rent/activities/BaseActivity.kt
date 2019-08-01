@@ -109,7 +109,7 @@ abstract class BaseActivity : AppCompatActivity() {
                                                 val response: Response = client.newCall(request).execute()
 
 
-                                                val JSONstring = response.body()?.string()
+                                                val JSONstring: String = response.body()?.string()!!
 
                                                 val JSONArray = JSONArray(JSONstring)
                                                 val JSON = JSONArray.get(0) as JSONObject
@@ -126,10 +126,11 @@ abstract class BaseActivity : AppCompatActivity() {
                                                 val userId = JSON.getInt("id")
                                                 editor.putInt("userid", userId)
                                                 editor.apply()
+                                                runOnUiThread(Runnable {
                                                 Toast.makeText(context,
                                                     "Successfully Logged in!",
                                                     Toast.LENGTH_SHORT).show()
-                                                println(JSONstring)
+                                                })
 
                                             }
 
