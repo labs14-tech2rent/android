@@ -33,7 +33,7 @@ class MainActivity : BaseActivity() {
 
             try{
                 val response = client.newCall(request).execute()
-                val result = response.body?.string()
+                val result = response.body()?.string()
                 val resultJSON: JSONArray = JSONArray(result)
                 textView.text = resultJSON.get(1).toString()
             }catch (e: Exception){

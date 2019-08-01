@@ -44,7 +44,7 @@ class ProfileActivity : BaseActivity() {
         *  NETWORK GET USER REQUEST
         *
         * */
-        val client: OkHttpClient = OkHttpClient()
+/*        val client: OkHttpClient = OkHttpClient()
         var profileString: String = ""
         val sharedPrefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
         val uuid = sharedPrefs.getString("uuid", "")
@@ -54,7 +54,7 @@ class ProfileActivity : BaseActivity() {
                 Request.Builder().url("https://labstech2rentstaging.herokuapp.com/api/users/$userid/reviews").build()
             try {
                 var response: Response = client.newCall(request).execute()
-                profileString = response.body!!.string()
+                profileString = response.body()!!.string()
 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -75,8 +75,8 @@ class ProfileActivity : BaseActivity() {
             profileJSON.getString("state"),
             profileJSON.getInt("zip_code"),
             profileJSON.getDouble("average_rating")
-        )
-        Picasso.get().load(editableProfile.profile_picture).into(profileImage)
+        )*/
+/*        Picasso.get().load(editableProfile.profile_picture).into(profileImage)
         editName.setText(editableProfile.name)
         editStreet.setText(editableProfile.street)
         editCity.setText(editableProfile.city)
@@ -91,7 +91,7 @@ class ProfileActivity : BaseActivity() {
                 checkCash.isChecked = true
                 checkCredit.isChecked = true
             }
-        }
+        }*/
 
         fun getPreferredPayment(): String{
             if (checkCash.isChecked && !checkCredit.isChecked){
@@ -118,6 +118,7 @@ class ProfileActivity : BaseActivity() {
 
 
 
+/*
             val body = FormBody.Builder()
                 .add("auth0_user_id", uuid)
                 .add("email", editableProfile.email)
@@ -136,6 +137,7 @@ class ProfileActivity : BaseActivity() {
 
             val response = client.newCall(postRequest).execute()
 
+*/
 
 
         })
