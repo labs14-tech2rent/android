@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -17,12 +18,12 @@ import com.auth0.android.provider.WebAuthProvider
 import com.auth0.android.result.Credentials
 import com.auth0.android.result.UserProfile
 import com.google.android.material.navigation.NavigationView
+import com.labs14tech2rent.tech2rent.activities.RegisterActivity
 import com.labs14tech2rent.tech2rent.R
 import kotlinx.android.synthetic.main.activity_base.*
 import okhttp3.*
+import org.json.JSONArray
 import org.json.JSONObject
-
-
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -49,9 +50,9 @@ abstract class BaseActivity : AppCompatActivity() {
         val client: OkHttpClient = OkHttpClient()
 
 
-        navView.setNavigationItemSelectedListener {it ->
+        navView.setNavigationItemSelectedListener { it ->
 
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.nav_list -> {
                     val intent = Intent(context, NewListing::class.java)
                     startActivity(intent)
@@ -63,11 +64,6 @@ abstract class BaseActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
-                R.id.nav_register -> {
-                    val intent = Intent(context, RegisterActivity::class.java)
-                    startActivity(intent)
-                }
-
                 R.id.nav_login -> {
 
                     val parameters = mapOf("prompt" to "login")
@@ -76,7 +72,7 @@ abstract class BaseActivity : AppCompatActivity() {
                         .withParameters(parameters)
                         .start(
                             this,
-                            object: AuthCallback{
+                            object : AuthCallback {
                                 override fun onFailure(dialog: Dialog) {
 
                                 }
@@ -93,39 +89,46 @@ abstract class BaseActivity : AppCompatActivity() {
                                             override fun onSuccess(userinfo: UserProfile) {
                                                 userinfo.id
                                                 var uuid: String = userinfo.extraInfo.get("sub").toString()
-                                                val sharedprefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
+                                                val sharedprefs: SharedPreferences =
+                                                    getSharedPreferences("acct", Context.MODE_PRIVATE)
                                                 val editor = sharedprefs.edit()
                                                 editor.putString("uuid", uuid)
                                                 editor.apply()
 
-                                                //uuid = "google-oauth2%7C115496944208789548182"
+                                                val body = RequestBody.create(
+                                                    MediaType.parse("application/json; charset=utf-8"),
+                                                    "{ \"auth0_user_id\": \"$uuid\" }"
+                                                )
 
-                       /*                         val body: RequestBody = FormBody.Builder().add("auth0_user_id", uuid).build()
-
-                                                var json = JSONObject()*/
-
-                                                val body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), "{ \"auth0_user_id\": \"$uuid\" }")
-
-                                                val request: Request = Request.Builder().post(body).url("http://labstech2rentstaging.herokuapp.com/api/users/testBody2").addHeader("Content-Type", "application/json;charset=UTF-8")
+                                                val request: Request = Request.Builder().post(body)
+                                                    .url("http://labstech2rentstaging.herokuapp.com/api/users/finduser")
+                                                    .addHeader("Content-Type", "application/json;charset=UTF-8")
                                                     .build()
 
                                                 println(body.toString())
                                                 val response: Response = client.newCall(request).execute()
 
 
-
                                                 val JSONstring = response.body()?.string()
 
-                                                val JSON = JSONObject(JSONstring)
+                                                val JSONArray = JSONArray(JSONstring)
+                                                val JSON = JSONArray.get(0) as JSONObject
                                                 try {
                                                     if (JSON.getString("message").equals("User not found")) {
-                                                        /*
-                                                    * REDIRECT TO FINISH PROFILE
-                                                    * */
+                                                        //Redirect to finish profile activity
+                                                        val intent = Intent(context, RegisterActivity::class.java)
+                                                        startActivity(intent)
                                                     }
-                                                }catch (e: Exception){ }
+                                                } catch (e: Exception) {
+                                                }
 
 
+                                                val userId = JSON.getInt("id")
+                                                editor.putInt("userid", userId)
+                                                editor.apply()
+                                                Toast.makeText(context,
+                                                    "Successfully Logged in!",
+                                                    Toast.LENGTH_SHORT).show()
                                                 println(JSONstring)
 
                                             }

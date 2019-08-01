@@ -12,7 +12,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".activities.RegisterActivity">
+        <activity android:name=".Activities.RegisterActivity">
         </activity>
 
         <uses-library
@@ -33,6 +33,7 @@
         <activity android:name=".activities.NewListing">
 
         </activity>
+        <activity android:name=".activities.RegisterActivity" />
 
     </application>
 
