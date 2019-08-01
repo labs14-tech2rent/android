@@ -100,6 +100,10 @@ class RegisterActivity : AppCompatActivity() {
 
                     val intent = Intent(context, MainActivity::class.java)
                     startActivity(intent)
+                }else{
+                    Toast.makeText(context,
+                        "Could not create account.Please try again",
+                        Toast.LENGTH_SHORT).show()
                 }
 
             println(JSON)
