@@ -7,4 +7,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <string-array name="Condition_Spinner">
+        <item>Condition: New</item>
+        <item>Condition: Like New</item>
+        <item>Condition: Used - Great Condition</item>
+        <item>Condition: Used - Good Condition</item>
+        <item>Condition: Used - Fair Condition</item>
+        <item>Condition: Used - Poor Condition</item>
+    </string-array>
 </resources>

@@ -7,6 +7,7 @@ import android.widget.ImageButton
 import com.labs14tech2rent.tech2rent.R
 import kotlinx.android.synthetic.main.activity_register.*
 
+
 class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +24,6 @@ class RegisterActivity : AppCompatActivity() {
         val editDob: EditText = edit_dob
         val editEmail: EditText = edit_email
         val buttonFinish: ImageButton = button_finish
-
 
     }
 }
