@@ -105,33 +105,33 @@ abstract class BaseActivity : AppCompatActivity() {
                                                     .addHeader("Content-Type", "application/json;charset=UTF-8")
                                                     .build()
 
-                                                println(body.toString())
+                                                //println(body.toString())
                                                 val response: Response = client.newCall(request).execute()
 
 
                                                 val JSONstring: String = response.body()?.string()!!
 
-                                                val JSONArray = JSONArray(JSONstring)
-                                                val JSON = JSONArray.get(0) as JSONObject
-                                                try {
-                                                    if (JSON.getString("message").equals("User not found")) {
-                                                        //Redirect to finish profile activity
-                                                        val intent = Intent(context, RegisterActivity::class.java)
-                                                        startActivity(intent)
-                                                    }
-                                                } catch (e: Exception) {
+
+                                                if(JSONstring.contains("User not found")) {
+                                                    //Redirect to finish profile activity
+                                                    val intent = Intent(context, RegisterActivity::class.java)
+                                                    startActivity(intent)
+                                                }else {
+
+                                                    val JSONArray = JSONArray(JSONstring)
+                                                    val JSON = JSONArray.get(0) as JSONObject
+
+                                                    val userId = JSON.getInt("id")
+                                                    editor.putInt("userid", userId)
+                                                    editor.apply()
+                                                    runOnUiThread(Runnable {
+                                                        Toast.makeText(
+                                                            context,
+                                                            "Successfully Logged in!",
+                                                            Toast.LENGTH_SHORT
+                                                        ).show()
+                                                    })
                                                 }
-
-
-                                                val userId = JSON.getInt("id")
-                                                editor.putInt("userid", userId)
-                                                editor.apply()
-                                                runOnUiThread(Runnable {
-                                                Toast.makeText(context,
-                                                    "Successfully Logged in!",
-                                                    Toast.LENGTH_SHORT).show()
-                                                })
-
                                             }
 
                                             override fun onFailure(error: AuthenticationException) {

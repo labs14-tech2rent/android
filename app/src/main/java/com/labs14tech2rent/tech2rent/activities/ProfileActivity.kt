@@ -130,20 +130,13 @@ class ProfileActivity : BaseActivity() {
             )
 
 
-            val body = FormBody.Builder()
-                .add("auth0_user_id", uuid)
-                .add("email", editableProfile.email)
-                .add("profile_picture", "profile picture")
-                .add("phone", editPhone.text.toString())
-                .add("date_of_birth", editDOB.text.toString())
-                .add("preferred_payment_type", getPreferredPayment())
-                .add("street", editStreet.text.toString())
-                .add("city", editCity.text.toString())
-                .add("state", editState.text.toString())
-                .add("zip_code", editZip.text.toString())
-                .build()
+            val body = RequestBody.create(
+                MediaType.parse("application/json; charset=utf-8"),
+                editedUser.toJSONString()
+            )
 
             val postRequest = Request.Builder().url("https://labstech2rentstaging.herokuapp.com/api/users/$userid")
+                .addHeader("Content-Type", "application/json;charset=UTF-8")
                 .put(body).build()
             Thread(Runnable {
                 val response = client.newCall(postRequest).execute()
