@@ -1,5 +1,7 @@
 package com.labs14tech2rent.tech2rent.activities
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.Listing
@@ -12,10 +14,10 @@ import org.json.JSONArray
 
 class NewListing : BaseActivity() {
 
-    private val urlString = "https://labstech2rentstaging.herokuapp.com/api/users/1/items"
-/*
+
+
     companion object {
-        val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
+        val JSON = MediaType.parse("application/json; charset=utf-8")
     }
 
 
@@ -23,6 +25,12 @@ class NewListing : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_listing)
         this.nav_view.menu.getItem(2).isChecked = true
+
+
+        val sharedPrefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
+        val uuid = sharedPrefs.getString("uuid", "")
+        val userid = sharedPrefs.getInt("userid", 0)
+        val urlString = "https://labstech2rentstaging.herokuapp.com/api/users/$userid/items"
 
 
 
@@ -53,7 +61,7 @@ class NewListing : BaseActivity() {
             }
 
 
-            val listing = Listing(0,1, //TODO: change user_id here once authorization is functional
+            val listing = Listing(0,userid,
                 listing_title.text.toString(),
                 listing_price.text.toString(), "",
                 listing_category.text.toString(),
@@ -69,15 +77,19 @@ class NewListing : BaseActivity() {
 
             Thread(Runnable {
                 val client = OkHttpClient()
-                val body: RequestBody = listing.toString().toRequestBody(JSON)
+                val body: RequestBody = RequestBody.create(JSON, listing.toString())
                 val request: Request = Request.Builder()
                     .url(urlString)
                     .post(body)
+                    .addHeader("Content-Type", "application/json;charset=UTF-8")
                     .build()
+
+
+
 
                 try {
                     val response = client.newCall(request).execute()
-                    val result = response.body?.string()
+                    val result = response.body()?.string()
                     val resultJSON: JSONArray = JSONArray(result)
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -85,5 +97,5 @@ class NewListing : BaseActivity() {
             }).start()
 
         }
-    }*/
+    }
 }

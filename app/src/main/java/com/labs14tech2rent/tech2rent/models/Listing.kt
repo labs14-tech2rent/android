@@ -4,7 +4,7 @@ import java.io.Serializable
 
 data class Listing(
     val item_id: Int,
-    val auth0_user_id: Int,
+    val user_id: Int,
     val name: String,
     val listing_price: String,
     val picture_url: String,
@@ -22,7 +22,7 @@ data class Listing(
 ) : Serializable {
 
     override fun toString(): String {
-        return "{\"users_ownerId\":\"$auth0_user_id\"," +
+        return "{\"users_ownerId\":\"$user_id\"," +
                 "\"name\":\"$name\"," +
                 "\"price\":\"$listing_price\"," +
                 "\"picture\":\"$picture_url\"," +
@@ -37,6 +37,9 @@ data class Listing(
                 "\"state\":\"$state\"," +
                 "\"zipcode\":\"$zip_code\"}"
     }
+
+
+
 }
 
 
