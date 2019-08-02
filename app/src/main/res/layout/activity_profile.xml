@@ -27,6 +27,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@mipmap/background"
                 android:layout_marginTop="50dp"
                 android:padding="15dp"
                 android:layout_width="match_parent"
@@ -251,6 +252,7 @@
                                      app:layout_constraintTop_toTopOf="@id/text_preferred_payment"
                                      app:layout_constraintBottom_toBottomOf="@id/text_preferred_payment"
                                      android:layout_marginStart="20dp"
+                            android:buttonTint="@color/white"
                                      android:text="Cash"
                                      android:id="@+id/check_preferred_cash"/>
 
@@ -259,6 +261,7 @@
                                      app:layout_constraintTop_toTopOf="@id/text_preferred_payment"
                                      app:layout_constraintBottom_toBottomOf="@id/text_preferred_payment"
                                      android:layout_marginStart="20dp"
+                            android:buttonTint="@color/white"
                                      android:text="Credit/Debit"
                                      android:id="@+id/check_preferred_credit"/>
 
