@@ -145,10 +145,15 @@ class ProfileActivity : BaseActivity() {
 
             val postRequest = Request.Builder().url("https://labstech2rentstaging.herokuapp.com/api/users/$userid")
                 .put(body).build()
+            Thread(Runnable {
+                val response = client.newCall(postRequest).execute()
 
-            val response = client.newCall(postRequest).execute()
+                println(response.body()?.string())
 
-            println(response.body()?.string())
+            }).start()
+
+
+
 
 
         })
