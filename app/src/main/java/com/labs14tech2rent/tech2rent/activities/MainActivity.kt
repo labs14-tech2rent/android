@@ -22,24 +22,5 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         nav_view.menu.getItem(0).isChecked = true
 
-        val buttonGet: Button = button_get
-
-        val client: OkHttpClient = OkHttpClient()
-
-        buttonGet.setOnClickListener(View.OnClickListener {
-
-            Thread(Runnable {
-            val request: Request = Request.Builder().url(urlString).build()
-
-            try{
-                val response = client.newCall(request).execute()
-                val result = response.body()?.string()
-                val resultJSON: JSONArray = JSONArray(result)
-                textView.text = resultJSON.get(1).toString()
-            }catch (e: Exception){
-                e.printStackTrace()
-            }
-            }).start()
-        })
     }
 }
