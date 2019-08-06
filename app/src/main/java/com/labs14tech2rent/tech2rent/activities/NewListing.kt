@@ -49,16 +49,8 @@ class NewListing : BaseActivity() {
                 "none"
             }
 
-            var zipcode = ""
-            var city = ""
-            var state = ""
 
-            if (listing_location.text.toString().substringAfter(',').contains(',')) {
 
-                zipcode = listing_location.text.toString().substringAfterLast(',')
-                city = listing_location.text.toString().substringBefore(',')
-                state = listing_location.text.toString().substringAfter(',').substringBefore(',')
-            }
 
 
             val listing = Listing(0,userid,
@@ -69,9 +61,9 @@ class NewListing : BaseActivity() {
                 payments, "5",
                 listing_condition_spinner.selectedItem.toString(),
                 listing_sub_category.text.toString(),
-                city,
-                state,
-                zipcode
+                listing_city.text.toString(),
+                listing_state.text.toString(),
+                listing_zip.text.toString()
                 )
 
 
