@@ -3,22 +3,13 @@ package com.labs14tech2rent.tech2rent.activities
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.Listing
-import com.labs14tech2rent.tech2rent.models.User
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.nav_view
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONArray
-import org.json.JSONObject
-
 
 
 class MainActivity : BaseActivity() {
