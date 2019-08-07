@@ -59,6 +59,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
                 }
 
+                R.id.nav_home -> {
+                    val intent = Intent(context, MainActivity::class.java)
+                    startActivity(intent)
+
+                }
+
                 R.id.nav_edit -> {
                     val intent = Intent(context, ProfileActivity::class.java)
                     startActivity(intent)
