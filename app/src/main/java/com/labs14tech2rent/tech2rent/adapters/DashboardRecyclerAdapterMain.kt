@@ -29,6 +29,7 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>): RecyclerView.Ad
 
         fun bindModel(listing: Listing){
 
+            //textListingLocation.text =
             textListingTitle.text = listing.name
             textListingDescription.text = listing.description
             textListingPrice.text = listing.listing_price
