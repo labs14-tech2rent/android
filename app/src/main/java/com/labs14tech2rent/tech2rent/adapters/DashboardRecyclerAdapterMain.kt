@@ -35,7 +35,7 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>): RecyclerView.Ad
             textListingPrice.text = listing.listing_price
             Thread(Runnable {
                 try{
-                    Picasso.get().load(listing.picture_url).into(listingImagePreview)
+                    listingImagePreview.setImageBitmap(Picasso.get().load(listing.picture_url).get())
                 }catch (e: Exception){}
 
                 val client: OkHttpClient = OkHttpClient()
@@ -52,7 +52,7 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>): RecyclerView.Ad
                 val profileJSON = JSONObject(JSONstring)
 
                 try {
-                    Picasso.get().load(profileJSON.getString("profile_picture")).into(listingImageProfile)
+                    listingImageProfile.setImageBitmap(Picasso.get().load(profileJSON.getString("profile_picture")).get())
                 }catch (e: Exception){}
             }).start()
 
