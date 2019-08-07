@@ -3,7 +3,10 @@ package com.labs14tech2rent.tech2rent.activities
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.labs14tech2rent.tech2rent.R
+import com.labs14tech2rent.tech2rent.adapters.DashboardRecyclerAdapterMain
 import com.labs14tech2rent.tech2rent.models.Listing
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
@@ -46,6 +49,15 @@ class MainActivity : BaseActivity() {
                 val item = Listing(Jarray.getJSONObject(i))
                 listings.add(item)
             }
+
+            runOnUiThread {
+                val recyclerView: RecyclerView = findViewById(R.id.recycler_view_main)
+                recyclerView.setHasFixedSize(true)
+                val layoutManager = LinearLayoutManager(this)
+                recyclerView.layoutManager = layoutManager
+                val adapter = DashboardRecyclerAdapterMain(listings)
+                recyclerView.adapter = adapter
+             }
 
         }).start()
     }
