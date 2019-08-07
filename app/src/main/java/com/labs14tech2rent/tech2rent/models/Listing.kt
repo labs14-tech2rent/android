@@ -1,5 +1,6 @@
 package com.labs14tech2rent.tech2rent.models
 
+import org.json.JSONObject
 import java.io.Serializable
 
 data class Listing(
@@ -19,7 +20,27 @@ data class Listing(
     val state: String,
     val zip_code: String
 
+
+
 ) : Serializable {
+
+    constructor(json: JSONObject) : this(
+        json.getInt("id"),
+        json.getInt("users_ownerId"),
+        json.getString("name"),
+        json.getString("price"),
+        json.getString("picture"),
+        json.getString("category"),
+        json.getString("description"),
+        json.getBoolean("available"),
+        json.getString("payment_type"),
+        json.getString("average_rating"),
+        json.getString("condition"),
+        json.getString("sub_category"),
+        json.getString("city"),
+        json.getString("state"),
+        json.getString("zipcode")
+        )
 
     override fun toString(): String {
         return "{\"users_ownerId\":\"$user_id\"," +
