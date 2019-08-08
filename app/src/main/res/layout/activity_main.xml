@@ -20,13 +20,18 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tool_bar"
                 app:theme="@style/ToolbarWhiteNavButton"
+                app:layout_scrollFlags="scroll|enterAlways"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="?attr/actionBarSize" />
         </com.google.android.material.appbar.AppBarLayout>
 
+        <androidx.core.widget.NestedScrollView
+            android:background="@mipmap/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:background="@mipmap/background"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context=".activities.MainActivity">
@@ -124,7 +129,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="match_parent"
                     app:layout_constraintTop_toBottomOf="@id/text_filter_options"
                     app:layout_constraintBottom_toTopOf="@id/layout_latest_reservations"
                     android:id="@+id/recycler_view_main"/>
@@ -159,6 +164,10 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
