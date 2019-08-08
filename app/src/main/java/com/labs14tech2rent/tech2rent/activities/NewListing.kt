@@ -1,8 +1,10 @@
 package com.labs14tech2rent.tech2rent.activities
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Toast
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.Listing
 import kotlinx.android.synthetic.main.activity_new_listing.*
@@ -10,6 +12,7 @@ import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import org.jetbrains.anko.toast
 import org.json.JSONArray
 
 class NewListing : BaseActivity() {
@@ -26,6 +29,8 @@ class NewListing : BaseActivity() {
         setContentView(R.layout.activity_new_listing)
         this.nav_view.menu.getItem(2).isChecked = true
 
+
+        val context = this
 
         val sharedPrefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
         val uuid = sharedPrefs.getString("uuid", "")
@@ -83,11 +88,18 @@ class NewListing : BaseActivity() {
                     val response = client.newCall(request).execute()
                     val result = response.body()?.string()
                     val resultJSON: JSONArray = JSONArray(result)
+                    val intent = Intent(context, MainActivity::class.java)
+                    runOnUiThread { toast("Success") }
+                    startActivity(intent)
+
                 } catch (e: Exception) {
+                    runOnUiThread { toast("Error, check fields and try again") }
                     e.printStackTrace()
                 }
             }).start()
 
         }
+
+
     }
 }
