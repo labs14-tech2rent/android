@@ -7,7 +7,8 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
-        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="editTextStyle">@style/RobotoEditText</item>
 
     </style>
 
@@ -19,6 +20,10 @@
     <style name="RobotoEditTextDarkFont" parent="Widget.AppCompat.EditText">
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textColorPrimary">@color/black</item>
+    </style>
+
+    <style name="RobotoEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
 

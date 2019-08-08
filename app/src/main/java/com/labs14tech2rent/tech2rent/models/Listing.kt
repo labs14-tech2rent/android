@@ -1,5 +1,6 @@
 package com.labs14tech2rent.tech2rent.models
 
+import android.graphics.Bitmap
 import org.json.JSONObject
 import java.io.Serializable
 
@@ -24,6 +25,10 @@ data class Listing(
 
 ) : Serializable {
 
+
+    var profileImage: Bitmap? = null
+    var displayImage: Bitmap? = null
+
     constructor(json: JSONObject) : this(
         json.getInt("id"),
         json.getInt("users_ownerId"),
@@ -39,7 +44,8 @@ data class Listing(
         json.getString("sub_category"),
         json.getString("city"),
         json.getString("state"),
-        json.getString("zipcode")
+        json.getString("zipcode"
+            )
         )
 
     override fun toString(): String {
