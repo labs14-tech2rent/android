@@ -7,28 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".activities.NewListing">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="wrap_content"
+        android:background="@mipmap/background">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/tool_bar"
-                app:theme="@style/ToolbarWhiteNavButton"
-                app:layout_scrollFlags="scroll|enterAlways"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
-        </com.google.android.material.appbar.AppBarLayout>
+                android:layout_height="wrap_content">
 
-        <androidx.core.widget.NestedScrollView
-            android:background="@mipmap/background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:theme="@style/ToolbarWhiteNavButton" />
+            </com.google.android.material.appbar.AppBarLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -38,147 +39,146 @@
 
                 <ImageView
                     android:id="@+id/search_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
+                    android:src="@drawable/search_bar_background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/search_bar_background"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/search_icon"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintStart_toStartOf="@id/search_background"
-                    app:layout_constraintBottom_toBottomOf="@id/search_background"
-                    app:layout_constraintTop_toTopOf="@id/search_background"
-                    android:src="@drawable/ic_search_black_24dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_search_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="@id/search_background"
+                    app:layout_constraintStart_toStartOf="@id/search_background"
+                    app:layout_constraintTop_toTopOf="@id/search_background" />
 
                 <EditText
-                    android:textColorHint="@color/black"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:hint="Try Nikon, Canon, 3D Printer"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@id/search_background"
                     app:layout_constraintEnd_toEndOf="@id/search_background"
                     app:layout_constraintStart_toEndOf="@id/search_icon"
-                    app:layout_constraintBottom_toBottomOf="@id/search_background"
-                    app:layout_constraintTop_toTopOf="@id/search_background"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    app:layout_constraintTop_toTopOf="@id/search_background" />
 
                 <ImageView
                     android:id="@+id/filter_outline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    app:layout_constraintTop_toBottomOf="@id/search_background"
+                    android:src="@drawable/dashboard_filter_outline"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:src="@drawable/dashboard_filter_outline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    app:layout_constraintTop_toBottomOf="@id/search_background" />
 
                 <ImageButton
                     android:id="@+id/button_filter_1"
-                    app:layout_constraintStart_toStartOf="@id/filter_outline"
-                    app:layout_constraintEnd_toStartOf="@id/button_filter_2"
-                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
-                    app:layout_constraintTop_toTopOf="@id/filter_outline"
-                    android:src="@drawable/filter_search_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/filter_search_button"
+                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
+                    app:layout_constraintEnd_toStartOf="@id/button_filter_2"
+                    app:layout_constraintStart_toStartOf="@id/filter_outline"
+                    app:layout_constraintTop_toTopOf="@id/filter_outline" />
 
                 <ImageButton
                     android:id="@+id/button_filter_2"
-                    app:layout_constraintStart_toEndOf="@id/button_filter_1"
-                    app:layout_constraintEnd_toStartOf="@id/button_filter_3"
-                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
-                    app:layout_constraintTop_toTopOf="@id/filter_outline"
-                    android:src="@drawable/filter_search_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/filter_search_button"
+                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
+                    app:layout_constraintEnd_toStartOf="@id/button_filter_3"
+                    app:layout_constraintStart_toEndOf="@id/button_filter_1"
+                    app:layout_constraintTop_toTopOf="@id/filter_outline" />
 
                 <ImageButton
                     android:id="@+id/button_filter_3"
-                    app:layout_constraintStart_toEndOf="@id/button_filter_2"
-                    app:layout_constraintEnd_toStartOf="@id/button_filter_4"
-                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
-                    app:layout_constraintTop_toTopOf="@id/filter_outline"
-                    android:src="@drawable/filter_search_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/filter_search_button"
+                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
+                    app:layout_constraintEnd_toStartOf="@id/button_filter_4"
+                    app:layout_constraintStart_toEndOf="@id/button_filter_2"
+                    app:layout_constraintTop_toTopOf="@id/filter_outline" />
 
                 <ImageButton
                     android:id="@+id/button_filter_4"
-                    app:layout_constraintStart_toEndOf="@id/button_filter_3"
-                    app:layout_constraintEnd_toEndOf="@id/filter_outline"
-                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
-                    app:layout_constraintTop_toTopOf="@id/filter_outline"
-                    android:src="@drawable/filter_search_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/filter_search_button"
+                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
+                    app:layout_constraintEnd_toEndOf="@id/filter_outline"
+                    app:layout_constraintStart_toEndOf="@id/button_filter_3"
+                    app:layout_constraintTop_toTopOf="@id/filter_outline" />
 
                 <TextView
                     android:id="@+id/text_filter_options"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/filter_outline"
-                    app:layout_constraintEnd_toEndOf="@id/filter_outline"
-                    android:text="Filter Options"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Filter Options"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/filter_outline"
+                    app:layout_constraintTop_toBottomOf="@id/filter_outline" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_main"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_filter_options"
                     app:layout_constraintBottom_toTopOf="@id/layout_latest_reservations"
-                    android:id="@+id/recycler_view_main"/>
-                
-                
+                    app:layout_constraintTop_toBottomOf="@id/text_filter_options" />
+
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_latest_reservations"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginBottom="40dp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_width="360dp"
-                    android:layout_height="120dp">
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
 
                     <TextView
                         android:id="@+id/text_latest_reservations"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Latest Reservations"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:text="Latest Reservations"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:layout_marginTop="5dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/text_latest_reservations"
-                        android:src="@drawable/dividing_line"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/dividing_line"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_latest_reservations" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
 
 
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        app:theme="@style/NavigationDrawerStyle"
-        android:paddingTop="60dp"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:menu="@menu/navigation" />
+        android:paddingTop="60dp"
+        app:menu="@menu/navigation"
+        app:theme="@style/NavigationDrawerStyle" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
