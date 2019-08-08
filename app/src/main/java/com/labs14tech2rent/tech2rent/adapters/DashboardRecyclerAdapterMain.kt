@@ -1,5 +1,6 @@
 package com.labs14tech2rent.tech2rent.adapters
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +16,9 @@ import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONObject
 
-class DashboardRecyclerAdapterMain(val dataList: List<Listing>): RecyclerView.Adapter<DashboardRecyclerAdapterMain.ViewHolder>() {
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+class DashboardRecyclerAdapterMain(val dataList: List<Listing>) :
+    RecyclerView.Adapter<DashboardRecyclerAdapterMain.ViewHolder>() {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val listingImagePreview: ImageView = view.single_item_imageview
         val textListingTitle: TextView = view.single_item_title_textview
@@ -27,16 +29,25 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>): RecyclerView.Ad
         val parent: View = view.parent_layout
 
 
-        fun bindModel(listing: Listing){
+        fun bindModel(listing: Listing) {
 
             //textListingLocation.text =
             textListingTitle.text = listing.name
             textListingDescription.text = listing.description
             textListingPrice.text = listing.listing_price
             Thread(Runnable {
-                try{
-                    listingImagePreview.setImageBitmap(Picasso.get().load(listing.picture_url).get())
-                }catch (e: Exception){}
+
+                if (listing.displayImage == null) {
+                    try {
+                        val temp: Bitmap = Picasso.get().load(listing.picture_url).get()
+                        listingImagePreview.setImageBitmap(temp)
+                        listing.displayImage = temp
+                    } catch (e: Exception) {
+                    }
+
+                } else{
+                    listingImagePreview.setImageBitmap(listing.displayImage)
+                }
 
                 val client: OkHttpClient = OkHttpClient()
                 val userid = listing.user_id
@@ -51,9 +62,18 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>): RecyclerView.Ad
                 val JSONstring = response.body()?.string()
                 val profileJSON = JSONObject(JSONstring)
 
-                try {
-                    listingImageProfile.setImageBitmap(Picasso.get().load(profileJSON.getString("profile_picture")).get())
-                }catch (e: Exception){}
+                if (listing.profileImage == null) {
+                    try {
+
+                        val temp: Bitmap = Picasso.get().load(profileJSON.getString("profile_picture")).get()
+                        listingImageProfile.setImageBitmap(temp)
+                        listing.profileImage = temp
+
+                    } catch (e: Exception) {
+                    }
+                }else {
+                    listingImageProfile.setImageBitmap(listing.profileImage)
+                }
             }).start()
 
 
