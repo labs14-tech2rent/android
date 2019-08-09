@@ -11,7 +11,12 @@ data class User(val auth0_user_id: String,
                 var city: String = "",
                 var state: String = "",
                 var zip_code: Int = 0,
-                var average_rating: Double = 0.0){
+                var average_rating: Double = 0.0,
+                var user_bio: String = "",
+                var title: String = ""){
+
+    /*"user_bio": null,
+    "title": null*/
 
     fun toJSONString(): String {
         return "{ \"auth0_user_id\": \"$auth0_user_id\"," +
@@ -25,7 +30,9 @@ data class User(val auth0_user_id: String,
                 " \"city\": \"$city\"," +
                 " \"state\": \"$state\"," +
                 " \"zip_code\": $zip_code," +
-                " \"average_rating\": $average_rating }"
+                " \"average_rating\": $average_rating" +
+                " \"user_bio\": $user_bio," +
+                " \"title\": $title }"
     }
 }
 

@@ -84,7 +84,9 @@ class ViewProfileFragment : DialogFragment() {
                     profileJSON.getString("city"),
                     profileJSON.getString("state"),
                     profileJSON.getInt("zip_code"),
-                    profileJSON.getDouble("average_rating")
+                    profileJSON.getDouble("average_rating"),
+                    "",
+                    profileJSON.getString("title")
                 )
             }catch (e: Exception){
                 user = User("unkown",
@@ -98,6 +100,9 @@ class ViewProfileFragment : DialogFragment() {
                 }catch (e: Exception){}
                 try {
                     user?.state = profileJSON.getString("state")
+                }catch (e: Exception){}
+                try {
+                    user?.title = profileJSON.getString("title")
                 }catch (e: Exception){}
             }
         }).start()
@@ -120,7 +125,7 @@ class ViewProfileFragment : DialogFragment() {
             profileImage?.setImageBitmap(listing?.profileImage)
         }
         textName?.text = user?.name
-        textTitle?.text
+        textTitle?.text = user?.title
         textLocation?.text = "${user?.city}, ${user?.state}"
         textBio?.text
 
