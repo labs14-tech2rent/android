@@ -28,6 +28,7 @@ class ProfileActivity : BaseActivity() {
 
         val profileImage: CircleImageView = image_profile_picture
         val editName: EditText = edit_name
+        val editTitle: EditText = edit_title
         val editStreet: EditText = edit_street_address
         val editCity: EditText = edit_city
         val editState: EditText = edit_state
@@ -78,7 +79,9 @@ class ProfileActivity : BaseActivity() {
                     profileJSON.getString("city"),
                     profileJSON.getString("state"),
                     profileJSON.getInt("zip_code"),
-                    profileJSON.getDouble("average_rating")
+                    profileJSON.getDouble("average_rating"),
+                    "",
+                    profileJSON.getString("title")
                 )
                 try {
                     Picasso.get().load(editableProfile.profile_picture).into(profileImage)
@@ -92,6 +95,7 @@ class ProfileActivity : BaseActivity() {
                 editZip.setText(editableProfile.zip_code.toString())
                 editDOB.setText(editableProfile.date_of_birth)
                 editPhone.setText(editableProfile.phone)
+                editTitle.setText(editableProfile.title)
                 when (editableProfile.preferred_payment_type) {
                     "cash" -> checkCash.isChecked = true
                     "card" -> checkCredit.isChecked = true
@@ -126,7 +130,9 @@ class ProfileActivity : BaseActivity() {
                 editCity.text.toString(),
                 editState.text.toString(),
                 editZip.text.toString().toInt(),
-                editableProfile.average_rating
+                editableProfile.average_rating,
+                "",
+                editTitle.text.toString()
             )
 
 
