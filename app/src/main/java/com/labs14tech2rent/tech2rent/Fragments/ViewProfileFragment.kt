@@ -57,7 +57,7 @@ class ViewProfileFragment : DialogFragment() {
 
 
         val userid = listing?.user_id
-        Thread(Runnable {
+        val request = Thread(Runnable {
             /*
             * GET USER REQUEST
             * */
@@ -106,6 +106,7 @@ class ViewProfileFragment : DialogFragment() {
                 }catch (e: Exception){}
             }
         }).start()
+
 
         /*
         * POPULATE UI WITH USER DATA

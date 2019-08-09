@@ -30,9 +30,9 @@ data class User(val auth0_user_id: String,
                 " \"city\": \"$city\"," +
                 " \"state\": \"$state\"," +
                 " \"zip_code\": $zip_code," +
-                " \"average_rating\": $average_rating" +
-                " \"user_bio\": $user_bio," +
-                " \"title\": $title }"
+                " \"average_rating\": $average_rating," +
+                " \"user_bio\": \"$user_bio\"," +
+                " \"title\": \"$title\" }"
     }
 }
 
