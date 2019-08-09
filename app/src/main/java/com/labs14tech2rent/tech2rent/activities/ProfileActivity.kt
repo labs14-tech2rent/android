@@ -118,7 +118,10 @@ class ProfileActivity : BaseActivity() {
             if (checkCredit.isChecked && !checkCash.isChecked) {
                 return "card"
             }
-            return "both"
+            if (checkCredit.isChecked && checkCash.isChecked) {
+                return "both"
+            }
+            return "none"
         }
 
         buttonSave.setOnClickListener(View.OnClickListener {
