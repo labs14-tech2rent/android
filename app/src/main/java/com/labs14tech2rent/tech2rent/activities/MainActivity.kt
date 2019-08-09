@@ -53,6 +53,7 @@ class MainActivity : BaseActivity() {
             runOnUiThread {
                 val recyclerView: RecyclerView = findViewById(R.id.recycler_view_main)
                 recyclerView.setHasFixedSize(true)
+                recyclerView.isNestedScrollingEnabled = false
                 val layoutManager = LinearLayoutManager(this)
                 recyclerView.layoutManager = layoutManager
                 val adapter = DashboardRecyclerAdapterMain(listings)
