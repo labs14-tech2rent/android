@@ -7,29 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".activities.NewListing">
 
-    <androidx.core.widget.NestedScrollView
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/background">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/app_bar"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tool_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="?attr/actionBarSize"
+                app:theme="@style/ToolbarWhiteNavButton" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/tool_bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_scrollFlags="scroll|enterAlways"
-                    app:theme="@style/ToolbarWhiteNavButton" />
-            </com.google.android.material.appbar.AppBarLayout>
 
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/background">
 
             <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -166,9 +166,9 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </androidx.core.widget.NestedScrollView>
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
