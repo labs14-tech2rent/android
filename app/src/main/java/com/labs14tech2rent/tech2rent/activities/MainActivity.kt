@@ -18,6 +18,7 @@ import org.json.JSONArray
 class MainActivity : BaseActivity() {
 
     val urlString = "http://labstech2rentstaging.herokuapp.com/api/items"
+    val context = this
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +57,7 @@ class MainActivity : BaseActivity() {
                 recyclerView.isNestedScrollingEnabled = false
                 val layoutManager = LinearLayoutManager(this)
                 recyclerView.layoutManager = layoutManager
-                val adapter = DashboardRecyclerAdapterMain(listings)
+                val adapter = DashboardRecyclerAdapterMain(listings, context)
                 recyclerView.adapter = adapter
              }
 

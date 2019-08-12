@@ -1,12 +1,16 @@
 package com.labs14tech2rent.tech2rent.adapters
 
 import android.graphics.Bitmap
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.labs14tech2rent.tech2rent.Fragments.ViewProfileFragment
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.Listing
 import com.squareup.picasso.Picasso
@@ -16,7 +20,7 @@ import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONObject
 
-class DashboardRecyclerAdapterMain(val dataList: List<Listing>) :
+class DashboardRecyclerAdapterMain(val dataList: List<Listing>, val activity: AppCompatActivity) :
     RecyclerView.Adapter<DashboardRecyclerAdapterMain.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -29,7 +33,7 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>) :
         val parent: View = view.parent_layout
 
 
-        fun bindModel(listing: Listing) {
+        fun bindModel(listing: Listing, activity: AppCompatActivity) {
 
             //textListingLocation.text =
             textListingTitle.text = listing.name
@@ -77,6 +81,15 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>) :
             }).start()
 
 
+            listingImageProfile.setOnClickListener(View.OnClickListener {
+                val profileFragment = ViewProfileFragment()
+                val args = Bundle()
+                args.putSerializable("listing", listing)
+                profileFragment.arguments = args
+                profileFragment.show(activity.supportFragmentManager, "profile")
+            })
+
+
             parent.setOnClickListener(View.OnClickListener {
                 /*
                 * Transfer to item details page
@@ -95,6 +108,6 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>) :
 
     override fun onBindViewHolder(holder: DashboardRecyclerAdapterMain.ViewHolder, position: Int) {
         val data: Listing = dataList.get(position)
-        holder.bindModel(data)
+        holder.bindModel(data, activity)
     }
 }

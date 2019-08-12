@@ -87,7 +87,8 @@ class NewListing : BaseActivity() {
                 try {
                     val response = client.newCall(request).execute()
                     val result = response.body()?.string()
-                    val resultJSON: JSONArray = JSONArray(result)
+                    println(result)
+                    //val resultJSON: JSONArray = JSONArray(result)
                     val intent = Intent(context, MainActivity::class.java)
                     runOnUiThread { toast("Success") }
                     startActivity(intent)

@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.Toast
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.User
 import com.squareup.picasso.Picasso
@@ -28,6 +29,7 @@ class ProfileActivity : BaseActivity() {
 
         val profileImage: CircleImageView = image_profile_picture
         val editName: EditText = edit_name
+        val editTitle: EditText = edit_title
         val editStreet: EditText = edit_street_address
         val editCity: EditText = edit_city
         val editState: EditText = edit_state
@@ -38,6 +40,7 @@ class ProfileActivity : BaseActivity() {
         val checkCredit: CheckBox = check_preferred_credit
         val buttonSave: Button = button_done
         val buttonCancel: Button = button_cancel
+        val editBio: EditText = text_bio
         val context = this
 
 
@@ -78,7 +81,9 @@ class ProfileActivity : BaseActivity() {
                     profileJSON.getString("city"),
                     profileJSON.getString("state"),
                     profileJSON.getInt("zip_code"),
-                    profileJSON.getDouble("average_rating")
+                    profileJSON.getDouble("average_rating"),
+                    profileJSON.getString("user_bio"),
+                    profileJSON.getString("title")
                 )
                 try {
                     Picasso.get().load(editableProfile.profile_picture).into(profileImage)
@@ -92,6 +97,8 @@ class ProfileActivity : BaseActivity() {
                 editZip.setText(editableProfile.zip_code.toString())
                 editDOB.setText(editableProfile.date_of_birth)
                 editPhone.setText(editableProfile.phone)
+                editTitle.setText(editableProfile.title)
+                editBio.setText(editableProfile.user_bio)
                 when (editableProfile.preferred_payment_type) {
                     "cash" -> checkCash.isChecked = true
                     "card" -> checkCredit.isChecked = true
@@ -111,7 +118,10 @@ class ProfileActivity : BaseActivity() {
             if (checkCredit.isChecked && !checkCash.isChecked) {
                 return "card"
             }
-            return "both"
+            if (checkCredit.isChecked && checkCash.isChecked) {
+                return "both"
+            }
+            return "none"
         }
 
         buttonSave.setOnClickListener(View.OnClickListener {
@@ -126,7 +136,9 @@ class ProfileActivity : BaseActivity() {
                 editCity.text.toString(),
                 editState.text.toString(),
                 editZip.text.toString().toInt(),
-                editableProfile.average_rating
+                editableProfile.average_rating,
+                editBio.text.toString(),
+                editTitle.text.toString()
             )
 
 
@@ -134,6 +146,7 @@ class ProfileActivity : BaseActivity() {
                 MediaType.parse("application/json; charset=utf-8"),
                 editedUser.toJSONString()
             )
+            println(body)
 
             val postRequest = Request.Builder().url("https://labstech2rentstaging.herokuapp.com/api/users/$userid")
                 .addHeader("Content-Type", "application/json;charset=UTF-8")
@@ -141,7 +154,16 @@ class ProfileActivity : BaseActivity() {
             Thread(Runnable {
                 val response = client.newCall(postRequest).execute()
 
-                println(response.body()?.string())
+                val responseBody = response.body()?.string()
+                println(responseBody)
+
+                runOnUiThread(Runnable {
+                    if(responseBody!!.contains("Error")){
+                        Toast.makeText(context, "Something went wrong, please try again.", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(context, "Successfully updated profile", Toast.LENGTH_SHORT).show()
+                    }
+                })
 
             }).start()
 

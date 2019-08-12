@@ -52,7 +52,9 @@ class RegisterActivity : AppCompatActivity() {
                 editCity.text.toString(),
                 editState.text.toString(),
                 editZip.text.toString().toInt(),
-                0.0)
+                0.0,
+                "",
+                editTitle.text.toString())
 
 
             Thread(Runnable {
