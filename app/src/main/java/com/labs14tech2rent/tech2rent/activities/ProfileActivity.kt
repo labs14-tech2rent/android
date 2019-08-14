@@ -50,129 +50,131 @@ class ProfileActivity : BaseActivity() {
         val client: OkHttpClient = OkHttpClient()
         var profileJSON: JSONObject = JSONObject()
         var editableProfile: User = User("", "", "")
+        
+        if(uuid!!.equals("") || userid == 0)
+        {
+            Toast.makeText(context, "Please log in to edit your profile", Toast.LENGTH_SHORT).show()
+        }else {
 
-
-        /*
+            /*
         *
         *  NETWORK GET USER REQUEST
         *
         * */
-        Thread(Runnable {
-            val request: Request = Request.Builder().get()
-                .url("http://labstech2rentstaging.herokuapp.com/api/users/$userid/reviews")
-                .addHeader("Content-Type", "application/json;charset=UTF-8")
-                .build()
-
-            val response: Response = client.newCall(request).execute()
-
-            val JSONstring = response.body()?.string()
-
-            runOnUiThread(Runnable {
-                profileJSON = JSONObject(JSONstring)
-                editableProfile = User(
-                    uuid!!,
-                    profileJSON.getString("email"),
-                    profileJSON.getString("name"),
-                    profileJSON.getString("profile_picture"),
-                    profileJSON.getString("phone"),
-                    profileJSON.getString("date_of_birth"),
-                    profileJSON.getString("preferred_payment_type"),
-                    profileJSON.getString("street"),
-                    profileJSON.getString("city"),
-                    profileJSON.getString("state"),
-                    profileJSON.getInt("zip_code"),
-                    profileJSON.getDouble("average_rating"),
-                    profileJSON.getString("user_bio"),
-                    profileJSON.getString("title")
-                )
-                try {
-                    Picasso.get().load(editableProfile.profile_picture).into(profileImage)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-                editName.setText(editableProfile.name)
-                editStreet.setText(editableProfile.street)
-                editCity.setText(editableProfile.city)
-                editState.setText(editableProfile.state)
-                editZip.setText(editableProfile.zip_code.toString())
-                editDOB.setText(editableProfile.date_of_birth)
-                editPhone.setText(editableProfile.phone)
-                editTitle.setText(editableProfile.title)
-                editBio.setText(editableProfile.user_bio)
-                when (editableProfile.preferred_payment_type) {
-                    "cash" -> checkCash.isChecked = true
-                    "card" -> checkCredit.isChecked = true
-                    "both" -> {
-                        checkCash.isChecked = true
-                        checkCredit.isChecked = true
-                    }
-                }
-            })
-
-        }).start()
-
-        fun getPreferredPayment(): String {
-            if (checkCash.isChecked && !checkCredit.isChecked) {
-                return "cash"
-            }
-            if (checkCredit.isChecked && !checkCash.isChecked) {
-                return "card"
-            }
-            if (checkCredit.isChecked && checkCash.isChecked) {
-                return "both"
-            }
-            return "none"
-        }
-
-        buttonSave.setOnClickListener(View.OnClickListener {
-            val editedUser: User = User(
-                uuid!!, editableProfile.email,
-                editName.text.toString(),
-                "profile pic",
-                editPhone.text.toString(),
-                editDOB.text.toString(),
-                getPreferredPayment(),
-                editStreet.text.toString(),
-                editCity.text.toString(),
-                editState.text.toString(),
-                editZip.text.toString().toInt(),
-                editableProfile.average_rating,
-                editBio.text.toString(),
-                editTitle.text.toString()
-            )
-
-
-            val body = RequestBody.create(
-                MediaType.parse("application/json; charset=utf-8"),
-                editedUser.toJSONString()
-            )
-            println(body)
-
-            val postRequest = Request.Builder().url("https://labstech2rentstaging.herokuapp.com/api/users/$userid")
-                .addHeader("Content-Type", "application/json;charset=UTF-8")
-                .put(body).build()
             Thread(Runnable {
-                val response = client.newCall(postRequest).execute()
+                val request: Request = Request.Builder().get()
+                    .url("http://labstech2rentstaging.herokuapp.com/api/users/$userid/reviews")
+                    .addHeader("Content-Type", "application/json;charset=UTF-8")
+                    .build()
 
-                val responseBody = response.body()?.string()
-                println(responseBody)
+                val response: Response = client.newCall(request).execute()
+
+                val JSONstring = response.body()?.string()
 
                 runOnUiThread(Runnable {
-                    if(responseBody!!.contains("Error")){
-                        Toast.makeText(context, "Something went wrong, please try again.", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(context, "Successfully updated profile", Toast.LENGTH_SHORT).show()
+                    profileJSON = JSONObject(JSONstring)
+                    editableProfile = User(
+                        uuid!!,
+                        profileJSON.getString("email"),
+                        profileJSON.getString("name"),
+                        profileJSON.getString("profile_picture"),
+                        profileJSON.getString("phone"),
+                        profileJSON.getString("date_of_birth"),
+                        profileJSON.getString("preferred_payment_type"),
+                        profileJSON.getString("street"),
+                        profileJSON.getString("city"),
+                        profileJSON.getString("state"),
+                        profileJSON.getInt("zip_code"),
+                        profileJSON.getDouble("average_rating"),
+                        profileJSON.getString("user_bio"),
+                        profileJSON.getString("title")
+                    )
+                    try {
+                        Picasso.get().load(editableProfile.profile_picture).into(profileImage)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                    editName.setText(editableProfile.name)
+                    editStreet.setText(editableProfile.street)
+                    editCity.setText(editableProfile.city)
+                    editState.setText(editableProfile.state)
+                    editZip.setText(editableProfile.zip_code.toString())
+                    editDOB.setText(editableProfile.date_of_birth)
+                    editPhone.setText(editableProfile.phone)
+                    editTitle.setText(editableProfile.title)
+                    editBio.setText(editableProfile.user_bio)
+                    when (editableProfile.preferred_payment_type) {
+                        "cash" -> checkCash.isChecked = true
+                        "card" -> checkCredit.isChecked = true
+                        "both" -> {
+                            checkCash.isChecked = true
+                            checkCredit.isChecked = true
+                        }
                     }
                 })
 
             }).start()
 
+            fun getPreferredPayment(): String {
+                if (checkCash.isChecked && !checkCredit.isChecked) {
+                    return "cash"
+                }
+                if (checkCredit.isChecked && !checkCash.isChecked) {
+                    return "card"
+                }
+                if (checkCredit.isChecked && checkCash.isChecked) {
+                    return "both"
+                }
+                return "none"
+            }
+
+            buttonSave.setOnClickListener(View.OnClickListener {
+                val editedUser: User = User(
+                    uuid!!, editableProfile.email,
+                    editName.text.toString(),
+                    "profile pic",
+                    editPhone.text.toString(),
+                    editDOB.text.toString(),
+                    getPreferredPayment(),
+                    editStreet.text.toString(),
+                    editCity.text.toString(),
+                    editState.text.toString(),
+                    editZip.text.toString().toInt(),
+                    editableProfile.average_rating,
+                    editBio.text.toString(),
+                    editTitle.text.toString()
+                )
 
 
+                val body = RequestBody.create(
+                    MediaType.parse("application/json; charset=utf-8"),
+                    editedUser.toJSONString()
+                )
+                println(body)
+
+                val postRequest = Request.Builder().url("https://labstech2rentstaging.herokuapp.com/api/users/$userid")
+                    .addHeader("Content-Type", "application/json;charset=UTF-8")
+                    .put(body).build()
+                Thread(Runnable {
+                    val response = client.newCall(postRequest).execute()
+
+                    val responseBody = response.body()?.string()
+                    println(responseBody)
+
+                    runOnUiThread(Runnable {
+                        if (responseBody!!.contains("Error")) {
+                            Toast.makeText(context, "Something went wrong, please try again.", Toast.LENGTH_SHORT)
+                                .show()
+                        } else {
+                            Toast.makeText(context, "Successfully updated profile", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+
+                }).start()
 
 
-        })
-
+            })
+        }
 
         buttonCancel.setOnClickListener(View.OnClickListener {
             startActivity(
