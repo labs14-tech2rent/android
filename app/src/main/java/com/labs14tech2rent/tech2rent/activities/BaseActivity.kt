@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ import com.auth0.android.provider.WebAuthProvider
 import com.auth0.android.result.Credentials
 import com.auth0.android.result.UserProfile
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.labs14tech2rent.tech2rent.activities.RegisterActivity
 import com.labs14tech2rent.tech2rent.R
 import kotlinx.android.synthetic.main.activity_base.*
@@ -76,7 +78,9 @@ abstract class BaseActivity : AppCompatActivity() {
                     val editor = sharedprefs.edit()
                     editor.clear()
                     editor.apply()
-                    Toast.makeText(context, "Successfully logged out", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "Successfully logged out", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(context, MainActivity::class.java)
+                    startActivity(intent)
                 }
 
                 R.id.nav_login -> {
