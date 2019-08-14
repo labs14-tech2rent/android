@@ -70,6 +70,15 @@ abstract class BaseActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
+                R.id.nav_logout -> {
+                    val sharedprefs: SharedPreferences =
+                        getSharedPreferences("acct", Context.MODE_PRIVATE)
+                    val editor = sharedprefs.edit()
+                    editor.clear()
+                    editor.apply()
+                    Toast.makeText(context, "Successfully logged out", Toast.LENGTH_SHORT).show()
+                }
+
                 R.id.nav_login -> {
 
                     val parameters = mapOf("prompt" to "login")
