@@ -1,6 +1,7 @@
 package com.labs14tech2rent.tech2rent.models
 
 import android.graphics.Bitmap
+import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter
 import org.json.JSONObject
 import java.io.Serializable
 
@@ -23,7 +24,14 @@ data class Listing(
 
 
 
-) : Serializable {
+) : SortedListAdapter.ViewModel, Serializable  {
+    override fun <T : Any?> isContentTheSameAs(model: T): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun <T : Any?> isSameModelAs(model: T): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
     var profileImage: Bitmap? = null
@@ -64,7 +72,6 @@ data class Listing(
                 "\"state\":\"$state\"," +
                 "\"zipcode\":\"$zip_code\"}"
     }
-
 
 
 }

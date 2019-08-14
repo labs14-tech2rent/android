@@ -1,184 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.NewListing">
 
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data></data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        tools:context=".activities.NewListing">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/tool_bar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:theme="@style/ToolbarWhiteNavButton" />
-        </com.google.android.material.appbar.AppBarLayout>
+                android:layout_height="wrap_content">
 
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/background">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".activities.MainActivity">
-
-                <ImageView
-                    android:id="@+id/search_background"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="75dp"
-                    android:src="@drawable/search_bar_background"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/search_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/ic_search_black_24dp"
-                    app:layout_constraintBottom_toBottomOf="@id/search_background"
-                    app:layout_constraintStart_toStartOf="@id/search_background"
-                    app:layout_constraintTop_toTopOf="@id/search_background" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Try Nikon, Canon, 3D Printer"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="@id/search_background"
-                    app:layout_constraintEnd_toEndOf="@id/search_background"
-                    app:layout_constraintStart_toEndOf="@id/search_icon"
-                    app:layout_constraintTop_toTopOf="@id/search_background" />
-
-                <ImageView
-                    android:id="@+id/filter_outline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:src="@drawable/dashboard_filter_outline"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/search_background" />
-
-                <ImageButton
-                    android:id="@+id/button_filter_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/filter_search_button"
-                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
-                    app:layout_constraintEnd_toStartOf="@id/button_filter_2"
-                    app:layout_constraintStart_toStartOf="@id/filter_outline"
-                    app:layout_constraintTop_toTopOf="@id/filter_outline" />
-
-                <ImageButton
-                    android:id="@+id/button_filter_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/filter_search_button"
-                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
-                    app:layout_constraintEnd_toStartOf="@id/button_filter_3"
-                    app:layout_constraintStart_toEndOf="@id/button_filter_1"
-                    app:layout_constraintTop_toTopOf="@id/filter_outline" />
-
-                <ImageButton
-                    android:id="@+id/button_filter_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/filter_search_button"
-                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
-                    app:layout_constraintEnd_toStartOf="@id/button_filter_4"
-                    app:layout_constraintStart_toEndOf="@id/button_filter_2"
-                    app:layout_constraintTop_toTopOf="@id/filter_outline" />
-
-                <ImageButton
-                    android:id="@+id/button_filter_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/filter_search_button"
-                    app:layout_constraintBottom_toBottomOf="@id/filter_outline"
-                    app:layout_constraintEnd_toEndOf="@id/filter_outline"
-                    app:layout_constraintStart_toEndOf="@id/button_filter_3"
-                    app:layout_constraintTop_toTopOf="@id/filter_outline" />
-
-                <TextView
-                    android:id="@+id/text_filter_options"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Filter Options"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@id/filter_outline"
-                    app:layout_constraintTop_toBottomOf="@id/filter_outline" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_main"
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintBottom_toTopOf="@id/layout_latest_reservations"
-                    app:layout_constraintTop_toBottomOf="@id/text_filter_options" />
+                    android:layout_height="?attr/actionBarSize"
+                    app:theme="@style/ToolbarWhiteNavButton" />
+            </com.google.android.material.appbar.AppBarLayout>
 
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/background">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layout_latest_reservations"
-                    android:layout_width="360dp"
-                    android:layout_height="120dp"
-                    android:layout_marginBottom="40dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
 
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context=".activities.MainActivity">
 
-                    <TextView
-                        android:id="@+id/text_latest_reservations"
+                    <ImageView
+                        android:id="@+id/search_background"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Latest Reservations"
-                        android:textSize="14sp"
+                        android:layout_marginTop="75dp"
+                        android:src="@drawable/search_bar_background"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
+                        android:id="@+id/search_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/dividing_line"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_search_black_24dp"
+                        app:layout_constraintBottom_toBottomOf="@id/search_background"
+                        app:layout_constraintStart_toStartOf="@id/search_background"
+                        app:layout_constraintTop_toTopOf="@id/search_background" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Try Nikon, Canon, 3D Printer"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@id/search_background"
+                        app:layout_constraintEnd_toEndOf="@id/search_background"
+                        app:layout_constraintStart_toEndOf="@id/search_icon"
+                        app:layout_constraintTop_toTopOf="@id/search_background" />
+
+                    <ImageView
+                        android:id="@+id/filter_outline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/dashboard_filter_outline"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/text_latest_reservations" />
+                        app:layout_constraintTop_toBottomOf="@id/search_background" />
+
+                    <ImageButton
+                        android:id="@+id/button_filter_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/filter_search_button"
+                        app:layout_constraintBottom_toBottomOf="@id/filter_outline"
+                        app:layout_constraintEnd_toStartOf="@id/button_filter_2"
+                        app:layout_constraintStart_toStartOf="@id/filter_outline"
+                        app:layout_constraintTop_toTopOf="@id/filter_outline" />
+
+                    <ImageButton
+                        android:id="@+id/button_filter_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/filter_search_button"
+                        app:layout_constraintBottom_toBottomOf="@id/filter_outline"
+                        app:layout_constraintEnd_toStartOf="@id/button_filter_3"
+                        app:layout_constraintStart_toEndOf="@id/button_filter_1"
+                        app:layout_constraintTop_toTopOf="@id/filter_outline" />
+
+                    <ImageButton
+                        android:id="@+id/button_filter_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/filter_search_button"
+                        app:layout_constraintBottom_toBottomOf="@id/filter_outline"
+                        app:layout_constraintEnd_toStartOf="@id/button_filter_4"
+                        app:layout_constraintStart_toEndOf="@id/button_filter_2"
+                        app:layout_constraintTop_toTopOf="@id/filter_outline" />
+
+                    <ImageButton
+                        android:id="@+id/button_filter_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/filter_search_button"
+                        app:layout_constraintBottom_toBottomOf="@id/filter_outline"
+                        app:layout_constraintEnd_toEndOf="@id/filter_outline"
+                        app:layout_constraintStart_toEndOf="@id/button_filter_3"
+                        app:layout_constraintTop_toTopOf="@id/filter_outline" />
+
+                    <TextView
+                        android:id="@+id/text_filter_options"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Filter Options"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/filter_outline"
+                        app:layout_constraintTop_toBottomOf="@id/filter_outline" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toTopOf="@id/layout_latest_reservations"
+                        app:layout_constraintTop_toBottomOf="@id/text_filter_options" />
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_latest_reservations"
+                        android:layout_width="360dp"
+                        android:layout_height="120dp"
+                        android:layout_marginBottom="40dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+
+                        <TextView
+                            android:id="@+id/text_latest_reservations"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Latest Reservations"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/dividing_line"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/text_latest_reservations" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
 
-        </androidx.core.widget.NestedScrollView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        android:paddingTop="60dp"
-        app:menu="@menu/navigation"
-        app:theme="@style/NavigationDrawerStyle" />
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            android:paddingTop="60dp"
+            app:menu="@menu/navigation"
+            app:theme="@style/NavigationDrawerStyle" />
 
 
-</androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</layout>

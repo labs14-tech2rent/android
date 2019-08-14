@@ -1,12 +1,20 @@
 package com.labs14tech2rent.tech2rent.activities
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
+import android.widget.SearchView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SortedListAdapterCallback
+import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.adapters.DashboardRecyclerAdapterMain
+import com.labs14tech2rent.tech2rent.adapters.ListingAdapter
+import com.labs14tech2rent.tech2rent.databinding.ActivityMainBinding
 import com.labs14tech2rent.tech2rent.models.Listing
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
@@ -15,10 +23,15 @@ import okhttp3.Response
 import org.json.JSONArray
 
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), SearchView.OnQueryTextListener, SortedListAdapter.Callback{
+
+
 
     val urlString = "http://labstech2rentstaging.herokuapp.com/api/items"
     val context = this
+
+    val comparator: Comparator<Listing> = SortedListAdapter.ComparatorBuilder<Listing>()
+        .build()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +39,12 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         nav_view.menu.getItem(0).isChecked = true
 
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        val listingAdapter = ListingAdapter(this, comparator, model -> {
+
+
+        })
 
 
         //added uuid and userid, but they don't have a use in this activity as of yet.
@@ -59,8 +78,25 @@ class MainActivity : BaseActivity() {
                 recyclerView.layoutManager = layoutManager
                 val adapter = DashboardRecyclerAdapterMain(listings, context)
                 recyclerView.adapter = adapter
-             }
+            }
 
         }).start()
+    }
+
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onEditFinished() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onEditStarted() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
