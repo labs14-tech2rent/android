@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
+import kotlin.Exception as Exception1
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -86,7 +87,7 @@ class RegisterActivity : AppCompatActivity() {
                         editor.apply()
                         Thread.sleep(1000)
                         Toast.makeText(
-                            context,
+                            baseContext,
                             "Successfully logged in",
                             Toast.LENGTH_SHORT
                         ).show()

@@ -1,5 +1,6 @@
 package com.labs14tech2rent.tech2rent.adapters
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.labs14tech2rent.tech2rent.activities.DetailsActivity
 import com.labs14tech2rent.tech2rent.Fragments.ViewProfileFragment
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.Listing
@@ -84,7 +85,7 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>, val activity: Ap
             listingImageProfile.setOnClickListener(View.OnClickListener {
                 val profileFragment = ViewProfileFragment()
                 val args = Bundle()
-                args.putSerializable("listing", listing)
+                args.putParcelable("listing", listing)
                 profileFragment.arguments = args
                 profileFragment.show(activity.supportFragmentManager, "profile")
             })
@@ -94,6 +95,15 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>, val activity: Ap
                 /*
                 * Transfer to item details page
                 * */
+                val intent = Intent(itemView.context, DetailsActivity::class.java)
+                /*val bundle: Bundle = Bundle()
+                bundle.putParcelable("listing", listing)*/
+                val listingString = listing.toTransferString()
+
+                intent.putExtra("listing", listingString)
+//                intent.putExtras(bundle)
+
+                itemView.context.startActivity(intent)
             })
         }
     }

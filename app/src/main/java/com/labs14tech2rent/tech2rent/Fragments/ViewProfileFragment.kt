@@ -33,7 +33,7 @@ class ViewProfileFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            listing = it.getSerializable("listing") as Listing
+            listing = it.getParcelable("listing") as Listing
         }
     }
 
