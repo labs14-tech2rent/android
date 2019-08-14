@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.Listing
 import kotlinx.android.synthetic.main.activity_details.*
+import org.json.JSONObject
 
 
 class DetailsActivity : BaseActivity() {
@@ -15,7 +16,9 @@ class DetailsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
-        val listing = intent.getParcelableExtra("listing") as Listing
+        val listingString = intent.getStringExtra("listing")
+        val listingJSON = JSONObject(listingString)
+        val listing = Listing(listingJSON)
 
         val textTitle: TextView = text_title
         val dotLeft: ImageView = dot_left

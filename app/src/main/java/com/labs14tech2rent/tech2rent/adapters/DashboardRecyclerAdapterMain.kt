@@ -96,7 +96,13 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>, val activity: Ap
                 * Transfer to item details page
                 * */
                 val intent = Intent(itemView.context, DetailsActivity::class.java)
-                intent.putExtra("listing", listing)
+                /*val bundle: Bundle = Bundle()
+                bundle.putParcelable("listing", listing)*/
+                val listingString = listing.toTransferString()
+
+                intent.putExtra("listing", listingString)
+//                intent.putExtras(bundle)
+
                 itemView.context.startActivity(intent)
             })
         }

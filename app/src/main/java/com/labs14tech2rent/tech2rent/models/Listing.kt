@@ -87,6 +87,24 @@ data class Listing(
                 "\"state\":\"$state\"," +
                 "\"zipcode\":\"$zip_code\"}"
     }
+    fun toTransferString(): String {
+        return "{\"users_ownerId\":\"$user_id\"," +
+                "\"id\":\"$item_id\"," +
+                "\"average_rating\":\"$average_rating\"," +
+                "\"name\":\"$name\"," +
+                "\"price\":\"$listing_price\"," +
+                "\"picture\":\"$picture_url\"," +
+                "\"category\":\"$category\"," +
+                "\"description\":\"$description\"," +
+                "\"available\":\"$available\"," +
+                "\"payment_type\":\"$preferred_payment_type\"," +
+                "\"condition\":\"$condition\"," +
+                "\"sub_category\":\"$sub_category\"," +
+                "\"price\":\"$listing_price\"," +
+                "\"city\":\"$city\"," +
+                "\"state\":\"$state\"," +
+                "\"zipcode\":\"$zip_code\"}"
+    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(item_id)
