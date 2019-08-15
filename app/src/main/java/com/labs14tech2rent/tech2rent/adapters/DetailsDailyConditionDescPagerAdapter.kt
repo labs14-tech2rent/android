@@ -4,12 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.labs14tech2rent.tech2rent.R
+import com.labs14tech2rent.tech2rent.models.Listing
 
 
+class DetailsDailyConditionDescPagerAdapter(val listing: Listing) : PagerAdapter() {
 
-class DetailsDailyConditionDescPagerAdapter : PagerAdapter() {
     override fun isViewFromObject(view: View, obj: Any): Boolean {
         return view == obj
     }
@@ -48,20 +50,23 @@ class DetailsDailyConditionDescPagerAdapter : PagerAdapter() {
         }
 
         container.addView(view)
-        populateUI(variableGroup)
+        populateUI(variableGroup, container)
         return view!!
     }
 
-    fun populateUI(variableGroup: Int) {
+    fun populateUI(variableGroup: Int, view: ViewGroup) {
         when (variableGroup) {
             1 -> {
-
+                val textRate = view.findViewById<TextView>(R.id.text_daily_rate)
+                textRate.text = listing.listing_price
             }
             2 -> {
-
+                val textCondition = view.findViewById<TextView>(R.id.text_condition)
+                textCondition.text = listing.condition
             }
             3 -> {
-
+                val textDescription = view.findViewById<TextView>(R.id.text_description)
+                textDescription.text = listing.description
             }
         }
     }

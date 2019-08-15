@@ -32,7 +32,7 @@ class DetailsActivity : BaseActivity() {
         val textDescription: TextView = text_description
         val viewPagerDailyConditionDesc: ViewPager = view_pager_daily_condition_desc
 
-        val dailyConditionDescAdapter = DetailsDailyConditionDescPagerAdapter()
+        val dailyConditionDescAdapter = DetailsDailyConditionDescPagerAdapter(listing)
         viewPagerDailyConditionDesc.adapter = dailyConditionDescAdapter
 
         textDailyRate.setOnClickListener(View.OnClickListener {
