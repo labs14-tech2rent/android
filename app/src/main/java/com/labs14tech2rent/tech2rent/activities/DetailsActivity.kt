@@ -29,27 +29,23 @@ class DetailsActivity : BaseActivity() {
         val dotCenter: ImageView = dot_center
         val dotRight: ImageView = dot_right
         val textDailyRate: TextView = text_daily_rate
-        val highlightDailyRate: ImageView = highlight_daily_rate
         val textCondition: TextView = text_condition
-        val highlightCondition: ImageView = highlight_condition
         val textDescription: TextView = text_description
-        val highlightDescription: ImageView = highlight_description
         val viewPagerDailyConditionDesc: ViewPager = view_pager_daily_condition_desc
 
         val dailyConditionDescAdapter = DetailsDailyConditionDescPagerAdapter()
         viewPagerDailyConditionDesc.adapter = dailyConditionDescAdapter
-        //dailyConditionDescAdapter.instantiateItem(viewPagerDailyConditionDesc, 0)
 
         textDailyRate.setOnClickListener(View.OnClickListener {
-            dailyConditionDescAdapter.instantiateItem(viewPagerDailyConditionDesc, 0)
+            viewPagerDailyConditionDesc.currentItem = 0
             changeHighlighted(1)
         })
         textCondition.setOnClickListener(View.OnClickListener {
-            dailyConditionDescAdapter.instantiateItem(viewPagerDailyConditionDesc, 1)
+            viewPagerDailyConditionDesc.currentItem = 1
             changeHighlighted(2)
         })
         textDescription.setOnClickListener(View.OnClickListener {
-            dailyConditionDescAdapter.instantiateItem(viewPagerDailyConditionDesc, 2)
+            viewPagerDailyConditionDesc.currentItem = 2
             changeHighlighted(3)
         })
 
