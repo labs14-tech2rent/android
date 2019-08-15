@@ -1,6 +1,5 @@
 package com.labs14tech2rent.tech2rent.activities
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
