@@ -181,7 +181,50 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintTop_toBottomOf="@id/highlight_condition"
                 android:layout_width="match_parent"
-                android:layout_height="225dp"/>
+                android:layout_height="200dp"/>
+            
+            <TextView
+                android:id="@+id/text_payment_method_title"
+                android:text="Payment Method"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_pager_daily_condition_desc"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/text_payment_method"
+                android:text="Cash Only"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_payment_method_title"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            
+            <ImageButton
+                android:id="@+id/button_rent"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/rent_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_payment_method"
+                android:layout_width="80dp"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:clickable="false"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:text="Rent"
+                app:layout_constraintEnd_toEndOf="@id/button_rent"
+                app:layout_constraintStart_toStartOf="@id/button_rent"
+                app:layout_constraintBottom_toBottomOf="@id/button_rent"
+                app:layout_constraintTop_toTopOf="@id/button_rent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

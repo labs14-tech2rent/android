@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
 import com.labs14tech2rent.tech2rent.R
 
-class DetailsDailyConditionDescPagerAdapter() : PagerAdapter() {
+
+
+class DetailsDailyConditionDescPagerAdapter : PagerAdapter() {
     override fun isViewFromObject(view: View, obj: Any): Boolean {
         return view == obj
     }
@@ -17,37 +18,42 @@ class DetailsDailyConditionDescPagerAdapter() : PagerAdapter() {
         return 3
     }
 
-    fun instantiateView(container: ViewGroup, position: Int) {
+    override fun instantiateItem(container: ViewGroup, positionInput: Int): View {
         val inflater: LayoutInflater =
             container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-        var resId = 1
+        var position = positionInput
+
+        if(position > 2){
+            position = 2
+        }
 
         var variableGroup = 0
+        var view: View? = null
         when (position) {
-            1 -> {
-                resId = R.layout.details_daily_container
+            0 -> {
+                view = inflater.inflate(R.layout.details_daily_container, container, false)
                 variableGroup = 1
             }
 
-            2 -> {
-                resId = R.layout.details_condition_container
+            1 -> {
+                view = inflater.inflate(R.layout.details_condition_container, container, false)
                 variableGroup = 2
             }
 
-            3 -> {
-                resId = R.layout.details_description_container
+            2 -> {
+                view = inflater.inflate(R.layout.details_description_container, container, false)
                 variableGroup = 3
             }
         }
 
-        val view: View = inflater.inflate(resId, container, false)
         container.addView(view)
         populateUI(variableGroup)
+        return view!!
     }
 
-    fun populateUI(variableGroup: Int){
-        when(variableGroup){
+    fun populateUI(variableGroup: Int) {
+        when (variableGroup) {
             1 -> {
 
             }
@@ -58,5 +64,9 @@ class DetailsDailyConditionDescPagerAdapter() : PagerAdapter() {
 
             }
         }
+    }
+
+    override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
+        container.removeView(obj as View)
     }
 }
