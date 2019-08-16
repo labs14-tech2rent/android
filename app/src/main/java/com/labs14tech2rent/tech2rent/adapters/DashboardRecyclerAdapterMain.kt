@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.labs14tech2rent.tech2rent.Fragments.ViewProfileFragment
+import com.labs14tech2rent.tech2rent.fragments.ViewProfileFragment
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.Listing
 import com.squareup.picasso.Picasso

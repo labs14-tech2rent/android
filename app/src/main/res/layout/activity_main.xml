@@ -4,7 +4,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data></data>
+
 
     <androidx.drawerlayout.widget.DrawerLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -70,6 +70,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="13sp"
+                        android:id="@+id/search_edittext"
                         app:layout_constraintBottom_toBottomOf="@id/search_background"
                         app:layout_constraintEnd_toEndOf="@id/search_background"
                         app:layout_constraintStart_toEndOf="@id/search_icon"
@@ -138,6 +139,7 @@
                         android:id="@+id/recycler_view_main"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        tools:listitem="@layout/listing_single_item"
                         app:layout_constraintBottom_toTopOf="@id/layout_latest_reservations"
                         app:layout_constraintTop_toBottomOf="@id/text_filter_options" />
 
