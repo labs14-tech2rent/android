@@ -1,9 +1,12 @@
 package com.labs14tech2rent.tech2rent.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.Listing
@@ -38,6 +41,11 @@ class NewListing : BaseActivity() {
         val urlString = "https://labstech2rentstaging.herokuapp.com/api/users/$userid/items"
 
 
+        button_add_image.setOnClickListener {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent.resolveActivity(packageManager)
+            startActivityForResult(intent, 210)
+        }
 
         submit_button.setOnClickListener {
 
@@ -53,7 +61,6 @@ class NewListing : BaseActivity() {
             } else {
                 "none"
             }
-
 
 
 
@@ -102,5 +109,12 @@ class NewListing : BaseActivity() {
         }
 
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(requestCode == 210 && resultCode == Activity.RESULT_OK){
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            new_listing_imageview.setImageBitmap(imageBitmap)
+        }
     }
 }

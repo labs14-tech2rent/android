@@ -1,14 +1,14 @@
 package com.labs14tech2rent.tech2rent.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.User
 import com.squareup.picasso.Picasso
@@ -28,6 +28,7 @@ class ProfileActivity : BaseActivity() {
         this.nav_view.menu.getItem(1).isChecked = true
 
         val profileImage: CircleImageView = image_profile_picture
+        val buttonEditProfilePicture: ImageButton = button_edit_profile_picture
         val editName: EditText = edit_name
         val editTitle: EditText = edit_title
         val editStreet: EditText = edit_street_address
@@ -61,6 +62,13 @@ class ProfileActivity : BaseActivity() {
         *  NETWORK GET USER REQUEST
         *
         * */
+
+            buttonEditProfilePicture.setOnClickListener {
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                intent.resolveActivity(packageManager)
+                startActivityForResult(intent, 210)
+            }
+
             Thread(Runnable {
                 val request: Request = Request.Builder().get()
                     .url("http://labstech2rentstaging.herokuapp.com/api/users/$userid/reviews")
@@ -184,6 +192,13 @@ class ProfileActivity : BaseActivity() {
                 )
             )
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(requestCode == 210 && resultCode == Activity.RESULT_OK){
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            image_profile_picture.setImageBitmap(imageBitmap)
+        }
     }
 }
 

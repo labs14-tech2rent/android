@@ -3,6 +3,9 @@
     package="com.labs14tech2rent.tech2rent">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+
 
     <application
         android:allowBackup="true"
@@ -18,6 +21,7 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
 
         <activity android:name=".activities.ProfileActivity"></activity>
         <activity android:name=".activities.MainActivity">
