@@ -17,6 +17,10 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import org.jetbrains.anko.toast
 import org.json.JSONArray
+import okhttp3.MultipartBody
+
+
+
 
 class NewListing : BaseActivity() {
 
@@ -63,6 +67,19 @@ class NewListing : BaseActivity() {
             }
 
 
+            /*val imageProcess = Thread(Runnable {
+
+                val MEDIA_TYPE = if (sourceImageFile.endsWith("png"))
+                    MediaType.parse("image/png")
+                else
+                    MediaType.parse("image/jpeg")
+
+                val requestBody = MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("uploaded_file", filename, RequestBody.create(MEDIA_TYPE_PNG, sourceFile))
+                    .addFormDataPart("result", "my_image")
+                    .build()
+            })*/
 
 
             val listing = Listing(0,userid,
@@ -117,4 +134,6 @@ class NewListing : BaseActivity() {
             new_listing_imageview.setImageBitmap(imageBitmap)
         }
     }
+
+
 }
