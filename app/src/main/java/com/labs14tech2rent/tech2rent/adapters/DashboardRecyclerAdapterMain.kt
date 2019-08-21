@@ -21,7 +21,7 @@ import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONObject
 
-class DashboardRecyclerAdapterMain(val dataList: List<Listing>, val activity: AppCompatActivity) :
+class DashboardRecyclerAdapterMain(var dataList: List<Listing>, val activity: AppCompatActivity) :
     RecyclerView.Adapter<DashboardRecyclerAdapterMain.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -77,7 +77,12 @@ class DashboardRecyclerAdapterMain(val dataList: List<Listing>, val activity: Ap
                     } catch (e: Exception) {
                     }
                 }else {
-                    listingImageProfile.setImageBitmap(listing.profileImage)
+                    try {
+                        listingImageProfile.setImageBitmap(listing.profileImage)
+                    }
+                    catch (e: Exception) {
+
+                    }
                 }
             }).start()
 

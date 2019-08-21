@@ -3,8 +3,10 @@ package com.labs14tech2rent.tech2rent.activities
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SortedList
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.adapters.DashboardRecyclerAdapterMain
 import com.labs14tech2rent.tech2rent.models.Listing
@@ -27,7 +29,6 @@ class MainActivity : BaseActivity() {
         nav_view.menu.getItem(0).isChecked = true
 
 
-
         //added uuid and userid, but they don't have a use in this activity as of yet.
         val sharedPrefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
         val uuid = sharedPrefs.getString("uuid", "")
@@ -41,7 +42,8 @@ class MainActivity : BaseActivity() {
                 .build()
 
             val response: Response = client.newCall(request).execute()
-            val listings: ArrayList<Listing> = ArrayList()
+            val listings: MutableList<Listing> = ArrayList()
+
             val JSONstring: String? = response.body()?.string()
             val Jarray = JSONArray(JSONstring)
 
@@ -51,6 +53,10 @@ class MainActivity : BaseActivity() {
                 listings.add(item)
             }
 
+
+
+
+
             runOnUiThread {
                 val recyclerView: RecyclerView = findViewById(R.id.recycler_view_main)
                 recyclerView.setHasFixedSize(true)
@@ -59,8 +65,54 @@ class MainActivity : BaseActivity() {
                 recyclerView.layoutManager = layoutManager
                 val adapter = DashboardRecyclerAdapterMain(listings, context)
                 recyclerView.adapter = adapter
-             }
 
+
+                button_filter_1.setOnClickListener {
+
+                    listings.sortBy {
+                        it.category
+                    }
+                    adapter.notifyDataSetChanged()
+                    println (adapter.dataList)
+
+                }
+
+                button_filter_2.setOnClickListener {
+
+                    listings.sortBy {
+                        it.name
+                    }
+                    adapter.notifyDataSetChanged()
+                    println (adapter.dataList)
+
+                }
+
+                button_filter_3.setOnClickListener {
+
+                    listings.sortBy {
+                        it.condition
+                    }
+                    adapter.notifyDataSetChanged()
+                    println (adapter.dataList)
+
+                }
+
+
+
+
+
+
+                button_filter_4.setOnClickListener {
+
+                    adapter.dataList.sortedBy {
+                        it.zip_code
+                    }
+                    adapter.notifyDataSetChanged()
+                    println (adapter.dataList)
+
+                }
+
+            }
         }).start()
     }
 }
