@@ -29,7 +29,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@mipmap/background">
+            android:background="@color/ux_color_9_dark_gray">
 
             <androidx.constraintlayout.widget.ConstraintLayout
 
