@@ -147,11 +147,9 @@ class MainActivity : BaseActivity() {
             }
 
 
-            val adapter2 = DashboardRecyclerAdapterMain(listings, context)
-            recyclerView.adapter = adapter2
-            adapter2.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
 
-            for (listing in adapter2.dataList) {
+            for (listing in adapter.dataList) {
                 println(listing)
             }
         }
@@ -164,11 +162,10 @@ class MainActivity : BaseActivity() {
             }
 
 
-            val adapter2 = DashboardRecyclerAdapterMain(listings, context)
-            recyclerView.adapter = adapter2
-            adapter2.notifyDataSetChanged()
 
-            for(listing in adapter2.dataList) {
+            adapter.notifyDataSetChanged()
+
+            for(listing in adapter.dataList) {
                 println (listing)
 
             }
