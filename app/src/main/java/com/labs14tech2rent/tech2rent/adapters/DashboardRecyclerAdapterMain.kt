@@ -42,46 +42,25 @@ class DashboardRecyclerAdapterMain(var dataList: List<Listing>, val activity: Ap
             textListingPrice.text = listing.listing_price
             Thread(Runnable {
 
-                if (listing.displayImage == null) {
+                if (listing.displayImage != null) {
                     try {
-                        val temp: Bitmap = Picasso.get().load(listing.picture_url).get()
-                        listingImagePreview.setImageBitmap(temp)
-                        listing.displayImage = temp
+                        listingImagePreview.setImageBitmap(listing.displayImage)
                     } catch (e: Exception) {
                     }
 
-                } else{
-                    listingImagePreview.setImageBitmap(listing.displayImage)
                 }
 
                 val client: OkHttpClient = OkHttpClient()
                 val userid = listing.user_id
 
-                val request: Request = Request.Builder().get()
-                    .url("http://labstech2rentstaging.herokuapp.com/api/users/$userid/reviews")
-                    .addHeader("Content-Type", "application/json;charset=UTF-8")
-                    .build()
 
-                val response: Response = client.newCall(request).execute()
 
-                val JSONstring = response.body()?.string()
-                val profileJSON = JSONObject(JSONstring)
-
-                if (listing.profileImage == null) {
+                if (listing.profileImage != null) {
                     try {
 
-                        val temp: Bitmap = Picasso.get().load(profileJSON.getString("profile_picture")).get()
-                        listingImageProfile.setImageBitmap(temp)
-                        listing.profileImage = temp
+                        listingImageProfile.setImageBitmap(listing.profileImage)
 
                     } catch (e: Exception) {
-                    }
-                }else {
-                    try {
-                        listingImageProfile.setImageBitmap(listing.profileImage)
-                    }
-                    catch (e: Exception) {
-
                     }
                 }
             }).start()

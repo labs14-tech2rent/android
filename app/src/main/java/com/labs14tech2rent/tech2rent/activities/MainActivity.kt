@@ -2,6 +2,7 @@ package com.labs14tech2rent.tech2rent.activities
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,23 +11,30 @@ import androidx.recyclerview.widget.SortedList
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.adapters.DashboardRecyclerAdapterMain
 import com.labs14tech2rent.tech2rent.models.Listing
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONArray
+import org.json.JSONObject
 
 
 class MainActivity : BaseActivity() {
 
     val urlString = "http://labstech2rentstaging.herokuapp.com/api/items"
     val context = this
+    var listings: MutableList<Listing> = mutableListOf()
+    lateinit var recyclerView: RecyclerView
+    lateinit var adapter: DashboardRecyclerAdapterMain
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         nav_view.menu.getItem(0).isChecked = true
+
+
 
 
         //added uuid and userid, but they don't have a use in this activity as of yet.
@@ -42,7 +50,7 @@ class MainActivity : BaseActivity() {
                 .build()
 
             val response: Response = client.newCall(request).execute()
-            val listings: MutableList<Listing> = ArrayList()
+
 
             val JSONstring: String? = response.body()?.string()
             val Jarray = JSONArray(JSONstring)
@@ -57,62 +65,118 @@ class MainActivity : BaseActivity() {
 
 
 
+
+
+
+            for (listing in listings) {
+
+                val itemUserId = listing.user_id
+
+                val request2: Request = Request.Builder().get()
+                    .url("http://labstech2rentstaging.herokuapp.com/api/users/$itemUserId/reviews")
+                    .addHeader("Content-Type", "application/json;charset=UTF-8")
+                    .build()
+
+                val response2: Response = client.newCall(request2).execute()
+
+                val JSONstring2 = response2.body()?.string()
+                val profileJSON = JSONObject(JSONstring2)
+
+                try {
+                    listing.displayImage = Picasso.get().load(listing.picture_url).get()
+                } catch (e: Exception) {
+                }
+
+                try {
+                listing.profileImage = Picasso.get().load(profileJSON.getString("profile_picture")).get()
+                } catch (e: Exception) {
+                }
+            }
+
+
+
+
+
             runOnUiThread {
-                val recyclerView: RecyclerView = findViewById(R.id.recycler_view_main)
+                recyclerView = findViewById(R.id.recycler_view_main)
                 recyclerView.setHasFixedSize(true)
                 recyclerView.isNestedScrollingEnabled = false
                 val layoutManager = LinearLayoutManager(this)
                 recyclerView.layoutManager = layoutManager
-                val adapter = DashboardRecyclerAdapterMain(listings, context)
+                adapter = DashboardRecyclerAdapterMain(listings, context)
                 recyclerView.adapter = adapter
-
-
-                button_filter_1.setOnClickListener {
-
-                    listings.sortBy {
-                        it.category
-                    }
-                    adapter.notifyDataSetChanged()
-                    println (adapter.dataList)
-
-                }
-
-                button_filter_2.setOnClickListener {
-
-                    listings.sortBy {
-                        it.name
-                    }
-                    adapter.notifyDataSetChanged()
-                    println (adapter.dataList)
-
-                }
-
-                button_filter_3.setOnClickListener {
-
-                    listings.sortBy {
-                        it.condition
-                    }
-                    adapter.notifyDataSetChanged()
-                    println (adapter.dataList)
-
-                }
-
-
-
-
-
-
-                button_filter_4.setOnClickListener {
-
-                    adapter.dataList.sortedBy {
-                        it.zip_code
-                    }
-                    adapter.notifyDataSetChanged()
-                    println (adapter.dataList)
-
-                }
 
             }
         }).start()
+
+
+        button_filter_1.setOnClickListener {
+
+            listings.sortBy {
+                it.description
+            }
+
+            recyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
+
+            for (listing in adapter.dataList) {
+                println(listing)
+
+            }
+        }
+
+
+        button_filter_2.setOnClickListener {
+
+            listings.sortBy {
+                it.name
+            }
+
+            adapter.notifyDataSetChanged()
+
+            for (listing in adapter.dataList) {
+                println(listing)
+            }
+
+        }
+
+        button_filter_3.setOnClickListener {
+
+            listings.sortBy {
+                it.condition
+            }
+
+
+            val adapter2 = DashboardRecyclerAdapterMain(listings, context)
+            recyclerView.adapter = adapter2
+            adapter2.notifyDataSetChanged()
+
+            for (listing in adapter2.dataList) {
+                println(listing)
+            }
+        }
+
+
+        button_filter_4.setOnClickListener {
+
+            listings.sortBy {
+                it.zip_code
+            }
+
+
+            val adapter2 = DashboardRecyclerAdapterMain(listings, context)
+            recyclerView.adapter = adapter2
+            adapter2.notifyDataSetChanged()
+
+            for(listing in adapter2.dataList) {
+                println (listing)
+
+            }
+
+        }
+
     }
+
+
+
 }
