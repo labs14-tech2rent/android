@@ -36,9 +36,18 @@ class DashboardRecyclerAdapterMain(var dataList: List<Listing>, val activity: Ap
 
         fun bindModel(listing: Listing, activity: AppCompatActivity) {
 
-            //textListingLocation.text =
-            textListingTitle.text = listing.name
-            textListingDescription.text = listing.description
+            if (listing.name.length > 37) { //length at which a substring is used
+                val temp: String = listing.name.substring(0,34) + "..."
+                textListingTitle.text = temp
+            } else {
+                textListingTitle.text = listing.name
+            }
+            if (listing.description.length > 75) {
+                val temp: String = listing.description.substring(0,70) + "..."
+                textListingDescription.text = temp
+            } else {
+                textListingDescription.text = listing.description
+            }
             textListingPrice.text = listing.listing_price
             Thread(Runnable {
 

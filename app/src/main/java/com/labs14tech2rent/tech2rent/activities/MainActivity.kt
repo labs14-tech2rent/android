@@ -13,6 +13,7 @@ import com.labs14tech2rent.tech2rent.adapters.DashboardRecyclerAdapterMain
 import com.labs14tech2rent.tech2rent.models.Listing
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_new_listing.view.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -33,6 +34,9 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         nav_view.menu.getItem(0).isChecked = true
+        layout_latest_reservations.visibility = View.GONE
+
+        progress_circular.visibility = View.VISIBLE
 
 
 
@@ -105,6 +109,9 @@ class MainActivity : BaseActivity() {
                 recyclerView.layoutManager = layoutManager
                 adapter = DashboardRecyclerAdapterMain(listings, context)
                 recyclerView.adapter = adapter
+                progress_circular.visibility = View.GONE
+                layout_latest_reservations.visibility = View.VISIBLE
+
 
             }
         }).start()
@@ -113,7 +120,7 @@ class MainActivity : BaseActivity() {
         button_filter_1.setOnClickListener {
 
             listings.sortBy {
-                it.description
+                it.category
             }
 
             recyclerView.adapter = adapter
@@ -128,9 +135,8 @@ class MainActivity : BaseActivity() {
 
         button_filter_2.setOnClickListener {
 
-            listings.sortBy {
-                it.name
-            }
+
+            listings.sortWith(compareBy({ it.listing_price.length },{ it.listing_price } ))
 
             adapter.notifyDataSetChanged()
 
@@ -143,7 +149,7 @@ class MainActivity : BaseActivity() {
         button_filter_3.setOnClickListener {
 
             listings.sortBy {
-                it.condition
+                it.zip_code
             }
 
 
@@ -158,7 +164,7 @@ class MainActivity : BaseActivity() {
         button_filter_4.setOnClickListener {
 
             listings.sortBy {
-                it.zip_code
+                it.condition
             }
 
 

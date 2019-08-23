@@ -17,6 +17,9 @@
     <color name="ux_color_6_dark_gray">#FF403F3F</color>
     <color name="ux_color_7_accent_red">#FFFD5454</color>
     <color name="ux_color_8_accent_purple">#FF9792EB</color>
+    <color name="ux_color_9_accent_dark_gray_2">#FF404040</color>
+    <color name="ux_color_10_accent_medium_gray_2">#FF646464</color>
+    <color name="ux_color_11_accent_light_gray_2">#FFD8D8D8</color>
 
     <color name="red_50">#FFEBEE</color>
     <color name="red_100">#FFCDD2</color>
