@@ -33,6 +33,9 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         nav_view.menu.getItem(0).isChecked = true
+        layout_latest_reservations.visibility = View.GONE
+
+        progress_circular.visibility = View.VISIBLE
 
 
 
@@ -105,6 +108,9 @@ class MainActivity : BaseActivity() {
                 recyclerView.layoutManager = layoutManager
                 adapter = DashboardRecyclerAdapterMain(listings, context)
                 recyclerView.adapter = adapter
+                progress_circular.visibility = View.GONE
+                layout_latest_reservations.visibility = View.VISIBLE
+
 
             }
         }).start()

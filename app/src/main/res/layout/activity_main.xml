@@ -28,8 +28,8 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/background">
+            android:layout_height="match_parent"
+            android:background="@color/ux_color_10_accent_medium_gray_2">
 
             <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -135,12 +135,21 @@
                     app:layout_constraintBottom_toTopOf="@id/layout_latest_reservations"
                     app:layout_constraintTop_toBottomOf="@id/text_filter_options" />
 
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginBottom="50dp"
+                    android:id="@+id/progress_circular"
+                    app:layout_constraintTop_toBottomOf="@id/filter_outline"
+                    android:layout_height="match_parent" />
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_latest_reservations"
                     android:layout_width="360dp"
                     android:layout_height="120dp"
                     android:layout_marginBottom="40dp"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_view_main"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">

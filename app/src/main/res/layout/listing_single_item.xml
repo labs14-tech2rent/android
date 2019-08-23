@@ -3,6 +3,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parent_layout"
+    android:background="@color/ux_color_9_accent_dark_gray_2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
