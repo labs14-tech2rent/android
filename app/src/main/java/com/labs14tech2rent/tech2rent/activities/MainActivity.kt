@@ -13,6 +13,7 @@ import com.labs14tech2rent.tech2rent.adapters.DashboardRecyclerAdapterMain
 import com.labs14tech2rent.tech2rent.models.Listing
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_new_listing.view.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -134,9 +135,8 @@ class MainActivity : BaseActivity() {
 
         button_filter_2.setOnClickListener {
 
-            listings.sortBy {
-                it.listing_price
-            }
+
+            listings.sortWith(compareBy({ it.listing_price.length },{ it.listing_price } ))
 
             adapter.notifyDataSetChanged()
 
