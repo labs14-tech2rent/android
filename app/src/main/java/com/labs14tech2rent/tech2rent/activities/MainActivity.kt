@@ -119,7 +119,7 @@ class MainActivity : BaseActivity() {
         button_filter_1.setOnClickListener {
 
             listings.sortBy {
-                it.description
+                it.category
             }
 
             recyclerView.adapter = adapter
@@ -135,7 +135,7 @@ class MainActivity : BaseActivity() {
         button_filter_2.setOnClickListener {
 
             listings.sortBy {
-                it.name
+                it.listing_price
             }
 
             adapter.notifyDataSetChanged()
@@ -149,7 +149,7 @@ class MainActivity : BaseActivity() {
         button_filter_3.setOnClickListener {
 
             listings.sortBy {
-                it.condition
+                it.zip_code
             }
 
 
@@ -164,7 +164,7 @@ class MainActivity : BaseActivity() {
         button_filter_4.setOnClickListener {
 
             listings.sortBy {
-                it.zip_code
+                it.condition
             }
 
 
