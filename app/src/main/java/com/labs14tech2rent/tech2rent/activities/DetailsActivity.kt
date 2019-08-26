@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
+import com.labs14tech2rent.tech2rent.Fragments.OrderDetailsFragment
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.adapters.DetailsDailyConditionDescPagerAdapter
 import com.labs14tech2rent.tech2rent.models.Listing
@@ -71,7 +72,13 @@ class DetailsActivity : BaseActivity() {
 
         })
 
-
+        button_rent.setOnClickListener{
+            val orderFragment = OrderDetailsFragment()
+            val args = Bundle()
+            args.putParcelable("listing", listing)
+            orderFragment.arguments = args
+            orderFragment.show(supportFragmentManager, "profile")
+        }
 
         textTitle.text = listing.name
 
