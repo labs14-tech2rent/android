@@ -1,19 +1,32 @@
 package com.labs14tech2rent.tech2rent.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
+import com.amazonaws.mobile.client.AWSMobileClient
 import com.labs14tech2rent.tech2rent.R
 import com.labs14tech2rent.tech2rent.models.Listing
 import kotlinx.android.synthetic.main.activity_new_listing.*
-import okhttp3.MediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
 import org.jetbrains.anko.toast
 import org.json.JSONArray
+import com.amazonaws.auth.BasicAWSCredentials
+import com.amazonaws.services.s3.AmazonS3Client
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver
+import java.io.File.separator
+import android.os.Environment.getExternalStorageDirectory
+import android.R.attr.bitmap
+import android.os.Environment
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState
+import okhttp3.*
+import java.io.*
+
 
 class NewListing : BaseActivity() {
 
@@ -23,7 +36,7 @@ class NewListing : BaseActivity() {
         val JSON = MediaType.parse("application/json; charset=utf-8")
     }
 
-
+    var imageBitmap: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_listing)
@@ -31,6 +44,7 @@ class NewListing : BaseActivity() {
 
 
         val context = this
+        val client = OkHttpClient()
 
         val sharedPrefs: SharedPreferences = getSharedPreferences("acct", Context.MODE_PRIVATE)
         val uuid = sharedPrefs.getString("uuid", "")
@@ -38,6 +52,11 @@ class NewListing : BaseActivity() {
         val urlString = "https://labstech2rentstaging.herokuapp.com/api/users/$userid/items"
 
 
+        button_add_image.setOnClickListener {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent.resolveActivity(packageManager)
+            startActivityForResult(intent, 210)
+        }
 
         submit_button.setOnClickListener {
 
@@ -73,7 +92,11 @@ class NewListing : BaseActivity() {
 
 
             Thread(Runnable {
-                val client = OkHttpClient()
+
+
+
+
+
                 val body: RequestBody = RequestBody.create(JSON, listing.toString())
                 val request: Request = Request.Builder()
                     .url(urlString)
@@ -103,4 +126,13 @@ class NewListing : BaseActivity() {
 
 
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(requestCode == 210 && resultCode == Activity.RESULT_OK){
+            imageBitmap = data?.extras?.get("data") as Bitmap
+            new_listing_imageview.setImageBitmap(imageBitmap)
+        }
+    }
+
+
 }
