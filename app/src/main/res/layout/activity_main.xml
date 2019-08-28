@@ -47,8 +47,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/search_icon"
+                    android:background="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -58,6 +59,7 @@
                     app:layout_constraintTop_toTopOf="@id/search_background" />
 
                 <EditText
+                    android:id="@+id/edit_search_field"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Try Nikon, Canon, 3D Printer"
