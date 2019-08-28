@@ -117,6 +117,19 @@ class MainActivity : BaseActivity() {
         }).start()
 
 
+        search_icon.setOnClickListener {
+            val searchString = edit_search_field.text.toString()
+            val newList = mutableListOf<Listing>()
+            for(it: Listing in listings){
+                if (it.name.contains(searchString)){
+                    newList.add(it)
+                }
+            }
+            listings.clear()
+            listings.addAll(newList)
+            adapter.notifyDataSetChanged()
+        }
+
         button_filter_1.setOnClickListener {
 
             listings.sortBy {
