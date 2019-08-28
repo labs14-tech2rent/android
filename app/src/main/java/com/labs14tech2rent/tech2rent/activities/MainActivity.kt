@@ -26,6 +26,7 @@ class MainActivity : BaseActivity() {
     val urlString = "http://labstech2rentstaging.herokuapp.com/api/items"
     val context = this
     var listings: MutableList<Listing> = mutableListOf()
+    var listingsStache: MutableList<Listing> = mutableListOf()
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: DashboardRecyclerAdapterMain
 
@@ -118,10 +119,18 @@ class MainActivity : BaseActivity() {
 
 
         search_icon.setOnClickListener {
+            if (listingsStache.size == 0) { //stores the master list
+                listingsStache.addAll(listings)
+            } else {
+                listings.clear() //re-loads the master list before new search
+                listings.addAll(listingsStache)
+            }
             val searchString = edit_search_field.text.toString()
             val newList = mutableListOf<Listing>()
             for(it: Listing in listings){
-                if (it.name.contains(searchString)){
+                if (it.name.toLowerCase().contains(searchString.toLowerCase())){
+                    newList.add(it)
+                } else if (it.description.toLowerCase().contains(searchString.toLowerCase())) {
                     newList.add(it)
                 }
             }
