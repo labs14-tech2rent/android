@@ -26,11 +26,11 @@
 
 
 
-1️⃣ [Trello Board]https://trello.com/b/td7jqlMg/labs-14-tech2rent
+1️⃣ [Trello Board](https://trello.com/b/td7jqlMg/labs-14-tech2rent)
 
-2️⃣ [Product Canvas]https://www.notion.so/Tech2Rent-fe7c1d9468e9478e9926f6d1e264fd58#3c3bd675fff6495da7dde3cf5c066583
+2️⃣ [Product Canvas](https://www.notion.so/Tech2Rent-fe7c1d9468e9478e9926f6d1e264fd58#3c3bd675fff6495da7dde3cf5c066583)
 
-3️⃣ [UX Design files]https://projects.invisionapp.com/share/3CSZCY0FRQT#/screens/373884994
+3️⃣ [UX Design files](https://projects.invisionapp.com/share/3CSZCY0FRQT#/screens/373884994)
 
 
 Imagine buying a new camera for one photoshoot. Sounds pretty expensive, right? On Tech2Rent's web platform, you can safely and securely rent hi-tech equipment instead of buying it.
