@@ -1,10 +1,10 @@
 # android
 
-# 1️⃣ Tech2Rent
+#  Tech2Rent
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
-## 4️⃣ Contributors
+##  Contributors
 
 
 | [Spencer Stock](https://github.com/spencerstock) | [Jake Esveld](https://github.com/JakeEsveldDevelopment) | [Lennox Prince](https://github.com/Jrprince13) |
@@ -28,14 +28,14 @@
 
 1️⃣ [Trello Board]https://trello.com/b/td7jqlMg/labs-14-tech2rent
 
-1️⃣ [Product Canvas]https://www.notion.so/Tech2Rent-fe7c1d9468e9478e9926f6d1e264fd58#3c3bd675fff6495da7dde3cf5c066583
+2️⃣ [Product Canvas]https://www.notion.so/Tech2Rent-fe7c1d9468e9478e9926f6d1e264fd58#3c3bd675fff6495da7dde3cf5c066583
 
-1️⃣ [UX Design files]https://projects.invisionapp.com/share/3CSZCY0FRQT#/screens/373884994
+3️⃣ [UX Design files]https://projects.invisionapp.com/share/3CSZCY0FRQT#/screens/373884994
 
 
 Imagine buying a new camera for one photoshoot. Sounds pretty expensive, right? On Tech2Rent's web platform, you can safely and securely rent hi-tech equipment instead of buying it.
 
-## 2️⃣ Features
+##  Features
 
 -    Feature 1
 https://www.notion.so/Owners-can-list-equipment-to-rent-828abdb5f9904c0582e3419269ef1ba9
@@ -50,37 +50,37 @@ https://www.notion.so/All-Users-can-review-each-other-3288829f565c490bbd80dd04e1
 -    Feature 6
 https://www.notion.so/All-Users-can-message-other-users-88164bd7c46b409e9f56212dee87137d
 
-## 2️⃣Authentication API here
+## Authentication API here
 
 🚫Replace text below with a description of the API
 
 Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
-## 2️⃣Payment API here
+## Payment API here
 
 🚫Replace text below with a description of the API
 
 This is the way you take out your frustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
 
-## 3️⃣Misc API here
+## Misc API here
 
 🚫Replace text below with a description of the API
 
 You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
 
-## 3️⃣Misc API here
+## Misc API here
 
 🚫Replace text below with a description of the API
 
 When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
 
-## 3️⃣Misc API here
+## Misc API here
 
 🚫Replace text below with a description of the API
 
 Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
 
-## 2️⃣Requirements
+## Requirements
 
 🚫 These are examples, make sure this matches your project's requirements
 
