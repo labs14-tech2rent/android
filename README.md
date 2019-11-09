@@ -9,7 +9,7 @@
 | :------------------------------------: | :---------------------------------: | :-----------------------------------: |
 | [<img src="https://avatars2.githubusercontent.com/u/46308524?s=400&v=4" width = "200" />](https://github.com/) | [<img src="https://avatars1.githubusercontent.com/u/44327370?s=400&v=4" width = "200" />](https://github.com/) | [<img src="https://avatars1.githubusercontent.com/u/51140053?s=400&v=4" width = "200" />](https://github.com/) |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/spencerstock)                 |                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JakeEsveldDevelopment)                 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Jrprince13)                 |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jake-esveld-9b0506158/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lennox-prince-jr-3241a43a/) |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/spencer-stock) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jake-esveld-9b0506158/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lennox-prince-jr-3241a43a/) |
 
 
 
